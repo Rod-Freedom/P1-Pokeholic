@@ -1,2 +1,2 @@
-# P1-Pokeholic
+# Pokeholic
 Gotta Drik'Em All
