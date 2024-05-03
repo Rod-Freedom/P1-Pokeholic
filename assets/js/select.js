@@ -26,4 +26,38 @@ const readyFunc = () => {
     setTitle();
 };
 
+// API Pokemon
+
+function getPokemonData(){
+    const apiURLPokemon = `https://pokeapi.co/api/v2/pokemon?limit=1302`;
+
+    return fetch(apiURLPokemon)
+    .then(response => response.json())
+    .then (data => {
+
+        const PokemonData = data.results;
+        return PokemonData;
+    })
+    .catch(error =>{
+        console.log("Error al obtener datos",error);
+        throw error;
+    });
+} 
+let PokemonList = [];
+
+getPokemonData()
+    .then(PokemonData => {
+        let i = 0
+        setInterval(()=> {
+            if (i > 99) return
+            fetch(PokemonData[i].url)
+            .then (response => response.json())
+            .then (data => 
+                {console.log(data) 
+                    i++})
+        },10)
+
+    });
+
+
 window.onload = readyFunc();
