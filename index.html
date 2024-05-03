@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" class="w-full min-h-screen">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Gotta Drink'em All!">
+        <link rel="shortcut icon" href="./assets/images/Ph-Favicon-square.png" type="image/x-icon">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Jersey+10&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Rubik+Mono+One&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="./assets/CSS/style.css">
+        <link rel="stylesheet" href="./assets/CSS/select.css">
+        <script defer src="https://kit.fontawesome.com/fef0315d16.js" crossorigin="anonymous"></script>
+        <script defer src="https://cdn.tailwindcss.com"></script>
+        <script defer src="./assets/js/logic.js"></script>
+        <script defer src="./assets/js/select.js"></script>
+        <title>Pokeholic | Gotta Drink'em All!</title>
+    </head>
+
+    <body class="flex flex-col h-screen relative overflow-hidden">
+        <div class="front-bg-filter z-0"></div>
+        <header class="w-full flex flex-row justify-center items-center relative pt-2 z-10">
+            <div class="font-brand-title color-brand title-brand flex flex-row flex-nowrap justify-center md:ml-16 ml-2">
+                <h1 class="letter front" data-rotation="-.2">P</h1>
+                <h1 class="letter back" data-rotation="-.1">o</h1>
+                <h1 class="letter middle" data-rotation="-.05">k</h1>
+                <h1 class="letter front" data-rotation=".05">E</h1>
+                <h1 class="letter middle" data-rotation="-.05">h</h1>
+                <h1 class="letter back" data-rotation=".1">ó</h1>
+                <h1 class="letter front" data-rotation=".1">L</h1>
+                <h1 class="letter middle" data-rotation=".05">i</h1>
+                <h1 class="letter back" data-rotation=".2">c</h1>
+            </div>
+
+            <div class="flex justify-end grow items-center md:mr-16 mr-2">
+                <button id="btn-dex" class="flex items-center justify-center py-4 px-6 text-white/75">
+                    <h1 class="font-brand-title text-4xl booze-dex pl-1 pr-8">BOOZE-DEX</h1>
+                    <i class="fa-regular fa-game-console-handheld md:text-6xl lg:text-7xl text-5xl "></i>
+                </button>
+            </div>
+        </header>
+
+        <main class="flex z-10 relative w-full grow mt-16">
+            <section id="left-screen" class="ground-bg flex w-1/4 flex-col items-center justify-center h-full relative rounded-3xl ">
+                <div id="poke-preview-div" class="w-full h-full flex justify-center items-center">
+                    <img id="poke-preview" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/34.svg" alt="">
+                </div>
+                <div class="absolute text-white px-4 py-2 text-7xl font-character">Nidoking</div>
+            </section>
+
+            <section class="grow border-2 h-full">section</section>
+
+            <section id="right-screen" class="flex w-1/4 flex-col items-center justify-center h-full relative rounded-3xl">
+                <div id="drink-preview-filter" class="w-full h-full rounded-3xl"></div>
+                <div class="absolute text-white px-4 py-2 text-7xl font-drink">Margarita</div>
+            </section>
+        </main>
+
+        <footer class="h-1/6">
+        </footer>
+    </body>
+</html>
