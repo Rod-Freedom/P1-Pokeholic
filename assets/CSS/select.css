@@ -1,3 +1,13 @@
+:root {
+    --light-poketype-color: rgb(192, 164, 137);
+    --dark-poketype-color: rgb(75, 52, 30);
+    --poketype-color-1: rgb(113, 78, 44);
+    --poketype-color-2: rgb(150, 104, 59);
+    --poketype-color-3: rgb(171, 134, 98);
+    --poketype-color-4: rgb(120, 84, 48);
+    --poketype-color-5: rgb(90, 63, 36);
+}
+
 /* The 'text-shadow' is for the text border. The calc() is to give responsiveness to the sizes. */
 .title-brand {
     display: flex;
@@ -58,13 +68,120 @@ header div {
     flex-grow: 0;
 }
 
+/* ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+/* The folowing code is for the left pokemon mini screen */
+
 #left-screen {
-    transform: perspective(1500px) rotateY(30deg);
-    border: solid 10px rgb(77, 44, 6);
+    --front-p: 17px;
+    --front-n: -17px;
+    --back-p: 8px;
+    --back-n: -8px;
+    transform: perspective(1500px) rotateY(30deg) rotateX(5deg);
+    border-left: solid var(--back-p) var(--dark-poketype-color);
+    border-right: solid var(--front-p) var(--light-poketype-color);
+    border-bottom: solid var(--back-p) var(--dark-poketype-color);
+    border-top: solid var(--front-p) var(--light-poketype-color);
+    box-shadow: 
+        var(--front-n) 0 var(--light-poketype-color),
+        var(--back-p) 0 var(--dark-poketype-color),
+        0 var(--back-n) var(--dark-poketype-color),
+        0 var(--back-p) var(--dark-poketype-color),
+        var(--front-n) var(--back-n) var(--dark-poketype-color),
+        var(--back-p) var(--back-n) var(--dark-poketype-color),
+        var(--back-p) var(--back-p) var(--dark-poketype-color),
+        var(--front-n) var(--back-p) var(--dark-poketype-color),
+        -30px var(--back-n) var(--dark-poketype-color),
+        -30px var(--back-p) var(--dark-poketype-color)
+    ;
 }
 
+.bg-poketype {
+    background:
+        linear-gradient(120deg, 
+            rgba(255, 255, 255, .2) 0%,
+            rgba(255, 255, 255, 0) 40%,
+            rgba(255, 255, 255, 0) 60%,
+            rgba(0, 0, 0, 0.4) 100%,
+            transparent
+        ), 
+        linear-gradient(40deg,
+            var(--poketype-color-1) 20%,
+            var(--poketype-color-2) 20%,
+            var(--poketype-color-2) 27%,
+            var(--poketype-color-3) 27%,
+            var(--poketype-color-3) 30%,
+            var(--poketype-color-4) 30%,
+            var(--poketype-color-4) 68%,
+            var(--poketype-color-3) 68%,
+            var(--poketype-color-3) 70%,
+            var(--poketype-color-5) 70%
+        );
+    background-size: 110%;
+}
+
+#poke-preview-div {
+    transform: scale(1.3);
+}
+
+#poke-gif {
+    transform: translateX(10px) translateY(-5px);
+}
+
+#poke-gif-shadow {
+    filter: brightness(0) blur(2px);
+    opacity: 0.5;
+}
+
+.div-name {
+    font-family: var(--font-content);
+    font-weight: 900;
+    font-style: italic;
+    background: var(--light-poketype-color);
+    border: solid 10px rgb(0, 0, 0);
+    border-radius: 200px;
+    box-shadow: -20px 7px 2px rgba(18, 18, 18, 0.5);
+    transform: translateX(20px);
+    padding: 5%;
+}
+
+.font-name {
+    transform: scaleY(1.3) translateX(10px);
+    text-shadow: 
+        4px -4px black,
+        4px 4px black,
+        4px 0px black,
+        0px 4px black,
+        0px -4px black,
+        -4px 4px black,
+        -4px -4px black,
+        -4px 0px black,
+        -10px 5px 2px rgba(18, 18, 18, .5)
+    ;
+}
+
+.stats {
+    background-color: var(--poketype-color-4);
+    transform: translateX(10px);
+    box-shadow: -10px 5px 2px rgb(0, 0, 0, .5);
+}
+
+.meter {
+    font-size: calc(.9rem + .4vw);
+    margin: 0 auto;
+    border-radius: 100px;
+}
+
+.level, .stat {
+   border-radius: 100px;
+}
+
+.hp { width: 81%; } .atk { width: 100%; } .def { width: 77%; } .sp-atk { width: 85%; } .sp-def { width: 75%; } .speed { width: 85%; }
+
+/* ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+/* The folowing code is for the right drink mini screen */
+
 #right-screen {
-    transform: perspective(1500px) rotateY(-30deg);
+    transform: perspective(1500px) rotateY(-30deg) rotateX(5deg);
     border: solid 10px rgb(77, 44, 6);
     background: url(https://www.thecocktaildb.com/images/media/drink/2x8thr1504816928.jpg);
     background-size: cover;
@@ -77,47 +194,11 @@ header div {
     opacity: .2;
 }
 
-.ground-bg {
-    background: linear-gradient(to bottom, 
-        rgba(0, 0, 0, 0) 0%,
-        rgba(0, 0, 0, .8) 70%,
-        rgba(0, 0, 0, .8) 100%, transparent
-        ), url(https://www.naturesearthproducts.com/wp-content/uploads/product_images/product-3308-1655207193-100006-420x864.jpg) center center no-repeat;
-    background-size: 110%;
-}
-
-#poke-preview-div {
-    width: 140%;
-}
-
-#poke-preview {
-    width: 100%;
-}
-
-.font-character {
-    font-family: var(--font-content);
-    font-weight: 900;
-    font-style: italic;
-    text-shadow: 
-        3px -3px black,
-        3px 3px black,
-        3px 0px black,
-        0px 3px black,
-        0px -3px black,
-        -3px 3px black,
-        -3px -3px black,
-        -3px 0px black,
-        5px 7px 5px black
-    ;
-    bottom: -6%;
-    transform: scaleY(1.3);
-}
-
 .font-drink {
     font-family: var(--font-content);
     font-weight: 900;
     font-style: italic;
-    text-shadow: 
+    text-shadow:
         4px -4px black,
         4px 4px black,
         4px 0px black,
@@ -130,6 +211,30 @@ header div {
     ;
     bottom: -6%;
     transform: scaleY(1.3);
+}
+
+.bg-poketype-2 {
+    background:
+        linear-gradient(120deg, 
+            rgba(255, 255, 255, .2) 0%,
+            rgba(255, 255, 255, 0) 40%,
+            rgba(255, 255, 255, 0) 60%,
+            rgba(0, 0, 0, 0.4) 100%,
+            transparent
+        ), 
+        linear-gradient(40deg,
+            var(--poketype-color-1) 20%,
+            var(--poketype-color-2) 20%,
+            var(--poketype-color-2) 27%,
+            var(--poketype-color-3) 27%,
+            var(--poketype-color-3) 30%,
+            var(--poketype-color-4) 30%,
+            var(--poketype-color-4) 68%,
+            var(--poketype-color-3) 68%,
+            var(--poketype-color-3) 70%,
+            var(--poketype-color-5) 70%
+        );
+    background-size: 110%;
 }
 
 @media (min-width: 768px) {

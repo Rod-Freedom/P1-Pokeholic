@@ -1,4 +1,6 @@
 const titleLetters = document.querySelectorAll('.letter'); // This selector targets the main title letters.
+let pokeList = [];
+let pokeArrayForDisplay = [];
 
 const setTitle = () => {
     const bornletters = (letter, i) => {
@@ -24,40 +26,36 @@ const setTitle = () => {
 
 const readyFunc = () => {
     setTitle();
+    getPokeListFunc();
 };
 
-// API Pokemon
+const renderPokeSelector = () => {
+    console.log(pokeArrayForDisplay);
+};
 
-function getPokemonData(){
-    const apiURLPokemon = `https://pokeapi.co/api/v2/pokemon?limit=1302`;
+const getTenPokemons = (index, limit) => {
+    let i = index;
+    const lim = limit;
 
-    return fetch(apiURLPokemon)
-    .then(response => response.json())
-    .then (data => {
+    fetch(pokeList[i].url)
+        .then(string => string.json())
+        .then(obj => pokeArrayForDisplay.push(obj))
+        .then(() => {
+            i++
+            if (i < lim) getTenPokemons(i, lim)
+            else return renderPokeSelector()
+        })
+        .catch(() => console.log('An error has been found'))
+};
 
-        const PokemonData = data.results;
-        return PokemonData;
-    })
-    .catch(error =>{
-        console.log("Error al obtener datos",error);
-        throw error;
-    });
-} 
-let PokemonList = [];
+const getPokeListFunc = () => {
+    const getPokeList = 'https://pokeapi.co/api/v2/pokemon?limit=1302';
 
-getPokemonData()
-    .then(PokemonData => {
-        let i = 0
-        setInterval(()=> {
-            if (i > 99) return
-            fetch(PokemonData[i].url)
-            .then (response => response.json())
-            .then (data => 
-                {console.log(data) 
-                    i++})
-        },10)
-
-    });
-
+    fetch(getPokeList)
+        .then(string => string.json())
+        .then(obj => pokeList = obj.results)
+        .then(() => getTenPokemons(0, 10))
+        .catch(() => console.log('An error has been found'))
+};
 
 window.onload = readyFunc();
