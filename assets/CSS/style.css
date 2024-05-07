@@ -3,18 +3,269 @@
     --font-brand-title: "Jersey 10", sans-serif;
     --font-brand-color: rgb(248, 248, 134);
     --font-content: "Roboto Mono", monospace;
+
+    /* ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+    /* From here on are the pokemon type color variables */
+
+    /* For ground type */
+    --light-poketype-color-ground: rgb(225, 176, 150);
+    --dark-poketype-color-ground: rgb(51, 31, 20);
+    --light-poketype-color-editable-ground: 225, 176, 150;
+    --dark-poketype-color-editable-ground: 51, 31, 20;
+    --poketype-color-1-ground: rgb(154, 92, 61);
+    --poketype-color-2-ground: rgb(205, 124, 80);
+    --poketype-color-3-ground: rgb(215, 150, 115);
+    --poketype-color-4-ground: rgb(154, 93, 60);
+    --poketype-color-5-ground: rgb(103, 62, 40);
+    
+    /* For poison type */
+    --light-poketype-color-poison: rgb(175, 151, 191);
+    --dark-poketype-color-poison: rgb(31, 20, 37);
+    --light-poketype-color-editable-poison: 175, 151, 191;
+    --dark-poketype-color-editable-poison: 31, 20, 37;
+    --poketype-color-1-poison: rgb(122, 82, 148);
+    --poketype-color-2-poison: rgb(162, 109, 196);
+    --poketype-color-3-poison: rgb(149, 117, 169);
+    --poketype-color-4-poison: rgb(92, 62, 111);
+    --poketype-color-5-poison: rgb(61, 41, 74);
+    
+    /* For normal type */
+    --light-poketype-color-normal: rgb(211, 214, 217);
+    --dark-poketype-color-normal: rgb(36, 38, 40);
+    --light-poketype-color-editable-normal: 211, 214, 217;
+    --dark-poketype-color-editable-normal: 36, 38, 40;
+    --poketype-color-1-normal: rgb(108, 114, 119);
+    --poketype-color-2-normal: rgb(145, 153, 161);
+    --poketype-color-3-normal: rgb(167, 173, 180);
+    --poketype-color-4-normal: rgb(109, 115, 121);
+    --poketype-color-5-normal: rgb(73, 77, 81);
+    
+    /* For fighting type */
+    --light-poketype-color-fighting: rgb(188, 135, 149);
+    --dark-poketype-color-fighting: rgb(36, 14, 20);
+    --light-poketype-color-editable-fighting: 188, 135, 149;
+    --dark-poketype-color-editable-fighting: 36, 14, 20;
+    --poketype-color-1-fighting: rgb(144, 55, 79);
+    --poketype-color-2-fighting: rgb(191, 74, 107);
+    --poketype-color-3-fighting: rgb(166, 95, 114);
+    --poketype-color-4-fighting: rgb(108, 41, 59);
+    --poketype-color-5-fighting: rgb(72, 28, 40);
+    
+    /* For flying type */
+    --light-poketype-color-flying: rgb(193, 204, 233);
+    --dark-poketype-color-flying: rgb(38, 42, 55);
+    --light-poketype-color-editable-flying: 193, 204, 233;
+    --dark-poketype-color-editable-flying: 38, 42, 55;
+    --poketype-color-1-flying: rgb(112, 127, 164);
+    --poketype-color-2-flying: rgb(151, 170, 218);
+    --poketype-color-3-flying: rgb(172, 187, 225);
+    --poketype-color-4-flying: rgb(113, 128, 163);
+    --poketype-color-5-flying: rgb(76, 85, 109);
+
+    /* For rock type */
+    --light-poketype-color-rock: rgb(220, 211, 188);
+    --dark-poketype-color-rock: rgb(49, 45, 36);
+    --light-poketype-color-editable-rock: 220, 211, 188;
+    --dark-poketype-color-editable-rock: 49, 45, 36;
+    --poketype-color-1-rock: rgb(148, 135, 106);
+    --poketype-color-2-rock: rgb(197, 181, 143);
+    --poketype-color-3-rock: rgb(209, 196, 165);
+    --poketype-color-4-rock: rgb(148, 136, 107);
+    --poketype-color-5-rock: rgb(99, 91, 72);
+    
+    /* For psychic type */
+    --light-poketype-color-psychic: rgb(242, 174, 175);
+    --dark-poketype-color-psychic: rgb(58, 30, 31);
+    --light-poketype-color-editable-psychic: 242, 174, 175;
+    --dark-poketype-color-editable-psychic: 58, 30, 31;
+    --poketype-color-1-psychic: rgb(175, 90, 91);
+    --poketype-color-2-psychic: rgb(233, 120, 122);
+    --poketype-color-3-psychic: rgb(237, 147, 149);
+    --poketype-color-4-psychic: rgb(175, 90, 92);
+    --poketype-color-5-psychic: rgb(117, 60, 61);
+    
+    /* For dragon type */
+    --light-poketype-color-dragon: rgb(129, 166, 215);
+    --dark-poketype-color-dragon: rgb(11, 27, 47);
+    --light-poketype-color-editable-dragon: 129, 166, 215;
+    --dark-poketype-color-editable-dragon: 11, 27, 47;
+    --poketype-color-1-dragon: rgb(33, 81, 141);
+    --poketype-color-2-dragon: rgb(45, 107, 188);
+    --poketype-color-3-dragon: rgb(87, 137, 201);
+    --poketype-color-4-dragon: rgb(34, 80, 141);
+    --poketype-color-5-dragon: rgb(23, 54, 94);
+    
+    /* For bug type */
+    --light-poketype-color-bug: rgb(195, 216, 146);
+    --dark-poketype-color-bug: rgb(39, 48, 18);
+    --light-poketype-color-editable-bug: 195, 216, 146;
+    --dark-poketype-color-editable-bug: 39, 48, 18;
+    --poketype-color-1-bug: rgb(117, 143, 53);
+    --poketype-color-2-bug: rgb(155, 190, 73);
+    --poketype-color-3-bug: rgb(175, 203, 109);
+    --poketype-color-4-bug: rgb(116, 143, 55);
+    --poketype-color-5-bug: rgb(78, 95, 37);
+    
+    /* For ghost type */
+    --light-poketype-color-ghost: rgb(154, 165, 203);
+    --dark-poketype-color-ghost: rgb(22, 26, 42);
+    --light-poketype-color-editable-ghost: 154, 165, 203;
+    --dark-poketype-color-editable-ghost: 22, 26, 42;
+    --poketype-color-1-ghost: rgb(64, 78, 126);
+    --poketype-color-2-ghost: rgb(86, 105, 168);
+    --poketype-color-3-ghost: rgb(120, 135, 185);
+    --poketype-color-4-ghost: rgb(65, 79, 126);
+    --poketype-color-5-ghost: rgb(43, 53, 84);
+    
+    /* For steel type */
+    --light-poketype-color-steel: rgb(162, 187, 199);
+    --dark-poketype-color-steel: rgb(25, 36, 40);
+    --light-poketype-color-editable-steel: 162, 187, 199;
+    --dark-poketype-color-editable-steel: 25, 36, 40;
+    --poketype-color-1-steel: rgb(76, 106, 120);
+    --poketype-color-2-steel: rgb(100, 142, 161);
+    --poketype-color-3-steel: rgb(131, 165, 180);
+    --poketype-color-4-steel: rgb(75, 107, 121);
+    --poketype-color-5-steel: rgb(50, 71, 81);
+
+    /* For fire type */
+    --light-poketype-color-fire: rgb(247, 198, 160);
+    --dark-poketype-color-fire: rgb(60, 40, 24);
+    --light-poketype-color-editable-fire: 247, 198, 160;
+    --dark-poketype-color-editable-fire: 60, 40, 24;
+    --poketype-color-1-fire: rgb(180, 119, 71);
+    --poketype-color-2-fire: rgb(241, 160, 96);
+    --poketype-color-3-fire: rgb(244, 179, 128);
+    --poketype-color-4-fire: rgb(181, 120, 72);
+    --poketype-color-5-fire: rgb(121, 80, 48);
+    
+    /* For water type */
+    --light-poketype-color-water: rgb(157, 187, 227);
+    --dark-poketype-color-water: rgb(23, 36, 52);
+    --light-poketype-color-editable-water: 157, 187, 227;
+    --dark-poketype-color-editable-water: 23, 36, 52;
+    --poketype-color-1-water: rgb(68, 106, 156);
+    --poketype-color-2-water: rgb(91, 142, 208);
+    --poketype-color-3-water: rgb(124, 165, 217);
+    --poketype-color-4-water: rgb(68, 107, 156);
+    --poketype-color-5-water: rgb(46, 71, 104);
+    
+    /* For grass type */
+    --light-poketype-color-grass: rgb(175, 212, 164);
+    --dark-poketype-color-grass: rgb(30, 46, 26);
+    --light-poketype-color-editable-grass: 175, 212, 164;
+    --dark-poketype-color-editable-grass: 30, 46, 26;
+    --poketype-color-1-grass: rgb(91, 138, 77);
+    --poketype-color-2-grass: rgb(121, 183, 103);
+    --poketype-color-3-grass: rgb(148, 197, 133);
+    --poketype-color-4-grass: rgb(91, 137, 77);
+    --poketype-color-5-grass: rgb(61, 92, 52);
+    
+    /* For electric type */
+    --light-poketype-color-electric: rgb(245, 227, 155);
+    --dark-poketype-color-electric: rgb(60, 52, 22);
+    --light-poketype-color-editable-electric: 245, 227, 155;
+    --dark-poketype-color-editable-electric: 60, 52, 22;
+    --poketype-color-1-electric: rgb(179, 157, 67);
+    --poketype-color-2-electric: rgb(239, 209, 89);
+    --poketype-color-3-electric: rgb(242, 218, 122);
+    --poketype-color-4-electric: rgb(179, 157, 67);
+    --poketype-color-5-electric: rgb(120, 105, 45);
+    
+    /* For dark type */
+    --light-poketype-color-dark: rgb(156, 151, 162);
+    --dark-poketype-color-dark: rgb(23, 20, 25);
+    --light-poketype-color-editable-dark: 156, 151, 162;
+    --dark-poketype-color-editable-dark: 23, 20, 25;
+    --poketype-color-1-dark: rgb(67, 62, 75);
+    --poketype-color-2-dark: rgb(90, 82, 100);
+    --poketype-color-3-dark: rgb(123, 117, 131);
+    --poketype-color-4-dark: rgb(68, 62, 75);
+    --poketype-color-5-dark: rgb(45, 41, 50);
+    
+    /* For ice type */
+    --light-poketype-color-ice: rgb(184, 224, 217);
+    --dark-poketype-color-ice: rgb(34, 51, 48);
+    --light-poketype-color-editable-ice: 184, 224, 217;
+    --dark-poketype-color-editable-ice: 34, 51, 48;
+    --poketype-color-1-ice: rgb(101, 152, 143);
+    --poketype-color-2-ice: rgb(136, 204, 191);
+    --poketype-color-3-ice: rgb(160, 214, 204);
+    --poketype-color-4-ice: rgb(102, 153, 143);
+    --poketype-color-5-ice: rgb(68, 102, 96);
+    
+    /* For fairy type */
+    --light-poketype-color-fairy: rgb(237, 192, 238);
+    --dark-poketype-color-fairy: rgb(56, 38, 57);
+    --light-poketype-color-editable-fairy: 237, 192, 238;
+    --dark-poketype-color-editable-fairy: 56, 38, 57;
+    --poketype-color-1-fairy: rgb(168, 112, 169);
+    --poketype-color-2-fairy: rgb(225, 150, 227);
+    --poketype-color-3-fairy: rgb(231, 171, 233);
+    --poketype-color-4-fairy: rgb(169, 113, 170);
+    --poketype-color-5-fairy: rgb(113, 75, 114);
+    
+    /* For shadow type */
+    --light-poketype-color-shadow: rgb(122, 72, 104);
+    --dark-poketype-color-shadow: rgb(19, 5, 5);
+    --light-poketype-color-editable-shadow: 122, 72, 104;
+    --dark-poketype-color-editable-shadow: 19, 5, 5;
+    --poketype-color-1-shadow: rgb(61, 16, 14);
+    --poketype-color-2-shadow: rgb(76, 21, 19);
+    --poketype-color-3-shadow: rgb(89, 26, 66);
+    --poketype-color-4-shadow: rgb(57, 16, 14);
+    --poketype-color-5-shadow: rgb(38, 11, 10);
+
+    /* The following sets are for the left and right card color scheme. */
+    /* This for the right-card/second-poke-type colors */
+    --light-poketype-color: rgb(192, 164, 137);
+    --dark-poketype-color: rgb(75, 52, 30);
+    --light-poketype-color-editable: 192, 164, 137;
+    --dark-poketype-color-editable: 75, 52, 30;
+    --poketype-color-1: rgb(113, 78, 44);
+    --poketype-color-2: rgb(150, 104, 59);
+    --poketype-color-3: rgb(171, 134, 98);
+    --poketype-color-4: rgb(120, 84, 48);
+    --poketype-color-5: rgb(90, 63, 36);
+    
+    /* This for the right-card/second-poke-type colors */
+    --light-poketype-color-2: rgb(180, 153, 168);
+    --dark-poketype-color-2: rgb(56, 36, 47);
+    --light-poketype-color-editable-2: 180, 153, 168;
+    --dark-poketype-color-editable-2: 56, 36, 47;
+    --poketype-color-1-2: rgb(98, 64, 83);
+    --poketype-color-2-2: rgb(130, 85, 110);
+    --poketype-color-3-2: rgb(155, 119, 139);
+    --poketype-color-4-2: rgb(104, 68, 88);
+    --poketype-color-5-2: rgb(65, 43, 55);
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    cursor: pointer;
 }
 
 body {
     background:
-        radial-gradient(ellipse at top, rgb(255, 0, 0) -60vh, rgb(0, 0, 35) 70vh, rgb(0, 0, 0) 100vw, transparent),
-        no-repeat center center fixed;
+        linear-gradient(
+            220deg,
+            rgba(125, 0, 159, 0.5) 0%,
+            rgba(0, 0, 159, 0.5) 40%,
+            rgba(66, 0, 0, 0.5) 40%,
+            transparent),
+        radial-gradient(
+            ellipse at top,
+            rgb(255, 0, 0) -60%,
+            rgb(0, 0, 35) 70%,
+            rgb(0, 0, 0) 100%,
+            transparent);
+    height: calc(100vh * (7 / 6));
+}
+
+main {
+    box-sizing: border-box;
 }
 
 .font-brand-title {
@@ -29,6 +280,6 @@ body {
     color: var(--font-brand-color);
 }
 
-.header-border {
-    border-bottom: solid 1px rgb(255, 255, 255, .8);
+#GH-link:hover .link-text {
+    text-decoration: underline;
 }
