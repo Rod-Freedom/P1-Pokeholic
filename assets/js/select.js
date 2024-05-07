@@ -385,17 +385,19 @@ const readyFunc = () => {
 
 //Local Storage Pokemon//
 
-const SelectButton = document.querySelector('#btn-select');
-SelectButton.addEventListener("click",function(){
+
+btnSelect.addEventListener("click",function(){
+
+    const mainPosition = document.querySelector('[data-position = "0"]');
 
     const selectedPokemon = {
-        name: document.getElementById("poke-name").innerText,
-        hp: document.getElementById("hp").dataset.hp,
-        atk: document.getElementById("atk").dataset.atk,
-        def: document.getElementById("def").dataset.def,
-        spAtk: document.getElementById("sp-atk").dataset.spAtk,
-        spDef: document.getElementById("sp-def").dataset.spDef,
-        speed: document.getElementById("speed").dataset.speed
+        name: mainPosition.dataset.name,
+        hp: mainPosition.dataset.hp,
+        atk: mainPosition.dataset.atk,
+        def: mainPosition.dataset.def,
+        spAtk: mainPosition.dataset.spAtk,
+        spDef: mainPosition.dataset.spDef,
+        speed: mainPosition.dataset.speed
     };
 
     localStorage.setItem("selectedPokemon",JSON.stringify(selectedPokemon));
@@ -404,7 +406,6 @@ SelectButton.addEventListener("click",function(){
 
     window.location.href = "drink.html";
 })
-
 
 
 window.onload = readyFunc();
