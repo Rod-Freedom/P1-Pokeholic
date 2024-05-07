@@ -401,6 +401,8 @@ SelectButton.addEventListener("click",function(){
     localStorage.setItem("selectedPokemon",JSON.stringify(selectedPokemon));
 
     console.log("Información almacenada:", selectedPokemon);
+
+    window.location.href = "drink.html";
 })
 
 
