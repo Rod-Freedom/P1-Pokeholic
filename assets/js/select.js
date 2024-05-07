@@ -1,8 +1,14 @@
+const rootEl = document.querySelector(':root'); // A constant for the root element to change te document CSS variables.
 const titleLetters = document.querySelectorAll('.letter'); // This selector targets the main title letters.
 const showroom = document.querySelector('#showroom');
+const pokeNameCard = document.querySelector('#poke-name');
+const btnNext = document.querySelector('#btn-next');
+const btnBack = document.querySelector('#btn-back');
+const btnSelect = document.querySelector('#btn-select');
 let pokeList = [];
 let pokeArrayForDisplay = [];
 
+// The following func sets a responsive size for the letters and rotates each of them individually. It also creates a hover animation.
 const setTitle = () => {
     const bornletters = (letter, i) => {
         let time = 200*i
@@ -14,12 +20,8 @@ const setTitle = () => {
 
     const animateLetters = (letter) =>{
         letter.style.transform = `rotate(${letter.dataset.rotation}rad)`;
-        letter.addEventListener('mouseenter', () => {
-            letter.style.transform = `scale(1.2)`;
-        });
-        letter.addEventListener('mouseleave', () => {
-            letter.style.transform = `rotate(${letter.dataset.rotation}rad)`;
-        });
+        letter.addEventListener('mouseenter', () => letter.style.transform = `scale(1.2)`);
+        letter.addEventListener('mouseleave', () => letter.style.transform = `rotate(${letter.dataset.rotation}rad)`);
     };
 
     titleLetters.forEach(animateLetters);
@@ -35,6 +37,127 @@ const changeTitleSize = () => {
     titleLetters.forEach(resizeLetters);
 };
 
+const changePokemon = (e) => {
+    const event = e.target;
+    const pokemons = document.querySelectorAll('.pokemon');
+    btnNext.removeEventListener('click', changePokemon);
+    btnBack.removeEventListener('click', changePokemon);
+
+    const changeDataPositionUp = (pokemon) => {
+        if (pokemon.dataset.position > 8) pokemon.dataset.position = 0
+        else pokemon.dataset.position++
+    };
+    
+    const changeDataPositionDown = (pokemon) => {
+        if (pokemon.dataset.position < 1) pokemon.dataset.position = 9
+        else pokemon.dataset.position--
+    };
+
+    if (event.id === 'btn-back') pokemons.forEach(changeDataPositionUp)
+    if (event.id === 'btn-next') pokemons.forEach(changeDataPositionDown)
+
+    pokemons.forEach(positionPokemons);
+
+    // The transition of the pokemons for changing position is one second, so this timeout is to prevent consecutive clicking from making a furious pokemons spiral.
+    setTimeout(() => {
+        btnNext.addEventListener('click', changePokemon);
+        btnBack.addEventListener('click', changePokemon);
+    }, 500)
+};
+
+const positionPokemons = (pokemon, index) => {
+    const pokeImg = pokemon.querySelector('.poke-img');
+    const pokeFxDiv = pokemon.querySelector('.poke-fx');
+    const i = Number(pokemon.dataset.position);
+
+    if (i !== 0) {
+        pokeImg.classList.remove('poke-back-glow');
+        pokeFxDiv.style.opacity = '0';
+    }
+    if (i === 0) {
+        pokemon.style.zIndex = '6';
+        pokemon.style.marginBottom = '-3%';
+        pokeImg.classList.add('poke-back-glow');
+        pokemon.style.filter = 'none';
+        pokeFxDiv.style.opacity = '1';
+        pokemon.style.transform = 'scale(1)';
+    }         
+    if (i === 1 || i === 9) {
+        pokemon.style.zIndex = '5';
+        pokemon.style.marginBottom = '-5%';
+        pokemon.style.transform = 'scale(.7)';
+        pokemon.style.filter = 'grayscale() brightness(20%)';
+    }
+    if (i === 2 || i === 8) { 
+        pokemon.style.zIndex = '4';
+        pokemon.style.marginBottom = '-2%';
+        pokemon.style.transform = 'scale(.6)';
+        pokemon.style.filter = 'grayscale() brightness(15%)';
+    }
+    if (i === 3 || i === 7) {
+        pokemon.style.zIndex = '3';
+        pokemon.style.marginBottom = '4%';
+        pokemon.style.transform = 'scale(.5)';
+        pokemon.style.filter = 'grayscale() brightness(12%)';
+    }
+    if (i === 4 || i === 6) {
+        pokemon.style.zIndex = '2';
+        pokemon.style.marginBottom = '3%';
+        pokemon.style.transform = 'scale(.4)';
+        pokemon.style.filter = 'grayscale() brightness(10%)';
+    }
+    if (i === 5) {
+        pokemon.style.zIndex = '1';
+        pokemon.style.marginBottom = '3%';
+        pokemon.style.transform = 'scale(.3)';
+        pokemon.style.filter = 'grayscale() brightness(5%)';
+    }
+    
+    switch (i) {
+        case 0:
+            pokemon.style.marginRight = '0';
+            pokemon.style.marginLeft = '0';
+            break
+        case 1:
+            pokemon.style.marginRight = 'calc(-26vw - 50%)';
+            pokemon.style.marginLeft = '0';
+            break
+        case 2:
+            pokemon.style.marginRight = 'calc(-46vw - 50%)';
+            pokemon.style.marginLeft = '0';
+            break
+        case 3:
+            pokemon.style.marginRight = 'calc(-32vw - 50%)';
+            pokemon.style.marginLeft = '0';
+            break
+        case 4:
+            pokemon.style.marginRight = 'calc(-12vw - 50%)';
+            pokemon.style.marginLeft = '0';
+            break
+        case 5:
+            pokemon.style.marginRight = '0';
+            pokemon.style.marginLeft = '0';
+            break
+        case 6:
+            pokemon.style.marginLeft = 'calc(-12vw - 50%)';
+            pokemon.style.marginRight = '0';
+            break
+        case 7:
+            pokemon.style.marginLeft = 'calc(-32vw - 50%)';
+            pokemon.style.marginRight = '0';
+            break
+        case 8:
+            pokemon.style.marginLeft = 'calc(-46vw - 50%)';
+            pokemon.style.marginRight = '0';
+            break
+        case 9:
+            pokemon.style.marginLeft = 'calc(-26vw - 50%)';
+            pokemon.style.marginRight = '0';
+            break
+    }
+
+    if (index === 9) fillPokeCard();
+};
 
 const renderOnePokemon = (pokemon, i) => {
     const pokemonDiv = document.createElement('div');
@@ -78,7 +201,7 @@ const renderOnePokemon = (pokemon, i) => {
 
     glowDiv.classList.add('glow', 'absolute', 'w-full', 'h-2/3');
 
-    pokeSelected.classList.add('elected', 'h-1/3', 'w-full', 'absolute', 'z-0');
+    pokeSelected.classList.add('selected', 'h-1/3', 'w-full', 'absolute', 'z-0');
 
     pokemonDiv.appendChild(pokemonImg);
     pokemonDiv.appendChild(pokeFxDiv);
@@ -126,7 +249,6 @@ const renderOnePokemon = (pokemon, i) => {
     
     switch (i) {
         case 0:
-            console.log(i);
             break
         case 1:
             pokemonDiv.style.marginRight = 'calc(-26vw - 50%)';
@@ -141,7 +263,6 @@ const renderOnePokemon = (pokemon, i) => {
             pokemonDiv.style.marginRight = 'calc(-12vw - 50%)';
             break
         case 5:
-            console.log(i);
             break
         case 6:
             pokemonDiv.style.marginLeft = 'calc(-12vw - 50%)';
@@ -157,8 +278,7 @@ const renderOnePokemon = (pokemon, i) => {
             break
     }
 
-    if (i === 9) fillPokeCard; 
-    
+    if (i === 9) fillPokeCard(); 
 };
 
 const renderPokemons = () => {
@@ -166,8 +286,66 @@ const renderPokemons = () => {
 };
 
 const fillPokeCard = () => {
-    const selectedPoke = document.querySelector
-    // rootEl.style.setProperty('--body-bg', 'rgb(23, 23, 23)');
+    const selectedPoke = document.querySelector('[data-position="0"]');
+    const pokeName = document.querySelector('#poke-name');
+    const levels = document.querySelectorAll('.level');
+    const extras = document.querySelectorAll('.extra');
+    const pokeGif = document.querySelector('#poke-gif');
+    const pokeGifShadow = document.querySelector('#poke-gif-shadow');
+    const dataTypeOne = selectedPoke.dataset.typeOne;
+    const dataTypeTwo = selectedPoke.dataset.typeTwo;
+    const gif = selectedPoke.dataset.gif;
+    const name = selectedPoke.dataset.name;
+    const statsArray = [
+        selectedPoke.dataset.hp,
+        selectedPoke.dataset.atk,
+        selectedPoke.dataset.def,
+        selectedPoke.dataset.spAtk,
+        selectedPoke.dataset.spDef,
+        selectedPoke.dataset.speed,
+    ];
+
+    if (name.length > 9) pokeName.style.fontSize = '3.75rem'
+    else pokeName.style.fontSize = '4.5rem'
+    pokeName.innerText = `${name[0].toUpperCase()}${name.slice(1)}`;
+    pokeGif.src = gif;
+    pokeGifShadow.src = gif;
+
+    const setBarLevels = (bar, i) => {
+        if (statsArray[i] > 100) {
+            bar.style.width = `100%`;
+            extras[i].innerText = `+${statsArray[i] - 100}%`;
+            bar.style.backgroundColor = 'rgb(96, 165, 250)';
+        } else {
+            bar.style.width = `${statsArray[i]}%`;
+            bar.style.backgroundColor = 'rgb(134, 239, 172)';
+            extras[i].innerText = '';
+        }
+    };
+
+    levels.forEach(setBarLevels);
+
+    // For the left card color scheme. Changes depending on the pokemon type.
+    rootEl.style.setProperty(`--light-poketype-color`, `var(--light-poketype-color-${dataTypeOne})`);
+    rootEl.style.setProperty(`--dark-poketype-color`, `var(--dark-poketype-color-${dataTypeOne})`);
+    rootEl.style.setProperty(`--light-poketype-color-editable`, `var(--light-poketype-color-editable-${dataTypeOne})`);
+    rootEl.style.setProperty(`--dark-poketype-color-editable`, `var(--dark-poketype-color-editable-${dataTypeOne})`);
+    rootEl.style.setProperty(`--poketype-color-1`, `var(--poketype-color-1-${dataTypeOne})`);
+    rootEl.style.setProperty(`--poketype-color-2`, `var(--poketype-color-2-${dataTypeOne})`);
+    rootEl.style.setProperty(`--poketype-color-3`, `var(--poketype-color-3-${dataTypeOne})`);
+    rootEl.style.setProperty(`--poketype-color-4`, `var(--poketype-color-4-${dataTypeOne})`);
+    rootEl.style.setProperty(`--poketype-color-5`, `var(--poketype-color-5-${dataTypeOne})`);
+    
+    // For the right card color scheme. Changes depending on the pokemon type.
+    rootEl.style.setProperty(`--light-poketype-color-2`, `var(--light-poketype-color-${dataTypeTwo})`);
+    rootEl.style.setProperty(`--dark-poketype-color-2`, `var(--dark-poketype-color-${dataTypeTwo})`);
+    rootEl.style.setProperty(`--light-poketype-color-editable-2`, `var(--light-poketype-color-editable-${dataTypeTwo})`);
+    rootEl.style.setProperty(`--dark-poketype-color-editable-2`, `var(--dark-poketype-color-editable-${dataTypeTwo})`);
+    rootEl.style.setProperty(`--poketype-color-1-2`, `var(--poketype-color-1-${dataTypeTwo})`);
+    rootEl.style.setProperty(`--poketype-color-2-2`, `var(--poketype-color-2-${dataTypeTwo})`);
+    rootEl.style.setProperty(`--poketype-color-3-2`, `var(--poketype-color-3-${dataTypeTwo})`);
+    rootEl.style.setProperty(`--poketype-color-4-2`, `var(--poketype-color-4-${dataTypeTwo})`);
+    rootEl.style.setProperty(`--poketype-color-5-2`, `var(--poketype-color-5-${dataTypeTwo})`);
 };
 
 const getTenPokemons = (index, limit) => {
@@ -188,7 +366,7 @@ const getTenPokemons = (index, limit) => {
 };
 
 const getPokeListFunc = () => {
-    const getPokeList = 'https://pokeapi.co/api/v2/pokemon?limit=1302';
+    const getPokeList = 'https://pokeapi.co/api/v2/pokemon?limit=1025';
 
     fetch(getPokeList)
         .then(string => string.json())
@@ -201,6 +379,8 @@ const readyFunc = () => {
     setTitle();
     getPokeListFunc();
     window.addEventListener('resize', changeTitleSize);
+    btnNext.addEventListener('click', changePokemon);
+    btnBack.addEventListener('click', changePokemon);
 };
 
 //Local Storage Pokemon//

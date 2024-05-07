@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Gotta Drink'em All!">
-        <link rel="shortcut icon" href="./assets/images/Ph-Favicon-round_1.png" type="image/x-icon">
+        <link rel="shortcut icon" href="./assets/images/Ph-Favicon-square.png" type="image/x-icon">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Jersey+10&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Rubik+Mono+One&display=swap" rel="stylesheet">
@@ -17,7 +17,7 @@
         <title>Pokeholic | Gotta Drink'em All!</title>
     </head>
 
-    <body class="flex flex-col relative overflow-x-hidden">
+    <body class="flex flex-col justify-between relative overflow-x-hidden">
         <div class="front-bg-filter z-0"></div>
         <header class="w-full h-1/6 flex flex-row justify-center items-start relative z-10">
             <div class="brand-bg absolute h-1/2 w-full top-0 z-0"></div>
@@ -50,35 +50,25 @@
                         <img id="poke-gif-shadow" class="z-0 absolute" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/34.gif" alt="">
                     </div>
 
-                    <div class="meter flex flex-row font-brand-title w-full"><h3 class="px-1 w-3/12">HP    </h3><div class="stat w-7/12 border-2 border-slate-300 m-1 p-1"><div id="hp" class="level bg-green-300 h-full hp"></div></div><p id="hp-extra" class="extra w-2/12 text-center"></p></div>
-                    <div class="meter flex flex-row font-brand-title w-full"><h3 class="px-1 w-3/12">ATK   </h3><div class="stat w-7/12 border-2 border-slate-300 m-1 p-1"><div id="atk" class="level bg-blue-400 h-full atk"></div></div><p id="atk-extra" class="extra w-2/12 text-center">+2%</p></div>
-                    <div class="meter flex flex-row font-brand-title w-full"><h3 class="px-1 w-3/12">DEF   </h3><div class="stat w-7/12 border-2 border-slate-300 m-1 p-1"><div id="def" class="level bg-green-300 h-full def"></div></div><p id="def-extra" class="extra w-2/12 text-center"></p></div>
-                    <div class="meter flex flex-row font-brand-title w-full"><h3 class="px-1 w-3/12">SP.ATK</h3><div class="stat w-7/12 border-2 border-slate-300 m-1 p-1"><div id="sp-atk" class="level bg-green-300 h-full sp-atk"></div></div><p id="sp-atk-extra" class="extra w-2/12 text-center"></p></div>
-                    <div class="meter flex flex-row font-brand-title w-full"><h3 class="px-1 w-3/12">SP.DEF</h3><div class="stat w-7/12 border-2 border-slate-300 m-1 p-1"><div id="sp-def" class="level bg-green-300 h-full sp-def"></div></div><p id="sp-def-extra" class="extra w-2/12 text-center"></p></div>
-                    <div class="meter flex flex-row font-brand-title w-full"><h3 class="px-1 w-3/12">SPEED </h3><div class="stat w-7/12 border-2 border-slate-300 m-1 p-1"><div id="speed" class="level bg-green-300 h-full speed"></div></div><p id="speed-extra" class="extra w-2/12 text-center"></p></div>
+                    <div class="meter flex flex-row font-brand-title w-full"><h3 class="px-1 w-3/12">HP    </h3><div class="stat w-7/12 border-2 border-slate-300 m-1 p-1"><div class="level h-full hp"></div></div><p id="hp-extra" class="extra w-2/12 text-center"></p></div>
+                    <div class="meter flex flex-row font-brand-title w-full"><h3 class="px-1 w-3/12">ATK   </h3><div class="stat w-7/12 border-2 border-slate-300 m-1 p-1"><div class="level h-full atk"></div></div><p id="atk-extra" class="extra w-2/12 text-center"></p></div>
+                    <div class="meter flex flex-row font-brand-title w-full"><h3 class="px-1 w-3/12">DEF   </h3><div class="stat w-7/12 border-2 border-slate-300 m-1 p-1"><div class="level h-full def"></div></div><p id="def-extra" class="extra w-2/12 text-center"></p></div>
+                    <div class="meter flex flex-row font-brand-title w-full"><h3 class="px-1 w-3/12">SP.ATK</h3><div class="stat w-7/12 border-2 border-slate-300 m-1 p-1"><div class="level h-full sp-atk"></div></div><p id="sp-atk-extra" class="extra w-2/12 text-center"></p></div>
+                    <div class="meter flex flex-row font-brand-title w-full"><h3 class="px-1 w-3/12">SP.DEF</h3><div class="stat w-7/12 border-2 border-slate-300 m-1 p-1"><div class="level h-full sp-def"></div></div><p id="sp-def-extra" class="extra w-2/12 text-center"></p></div>
+                    <div class="meter flex flex-row font-brand-title w-full"><h3 class="px-1 w-3/12">SPEED </h3><div class="stat w-7/12 border-2 border-slate-300 m-1 p-1"><div class="level h-full speed"></div></div><p id="speed-extra" class="extra w-2/12 text-center"></p></div>
                 </div>
 
-                <div class="text-white px-4 py-2 text-7xl div-name div-poke-name">
-                    <h1 id="poke-name" class="font-name text-center">Nidoking</h1>
+                <div class="text-white px-4 py-2 div-name div-poke-name">
+                    <h1 id="poke-name" class="font-name text-center"></h1>
                 </div>
             </section>
 
             <section id="showroom" class="flex flex-col items-center justify-end grow h-full relative z-10">
-                
-                <!-- <div id="pokemon" data-position="front" class="flex flex-col absolute h-4/5 z-50 pokemon">
-                    <img id="poke-img" class="h-full z-20" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/34.svg" alt="">
-                    <div id="poke-fx" class="flex absolute h-full opacity-0">
-                        <div class="flex glow-fx h-full w-full relative z-30">
-                            <img class="poke-glow h-full z-20" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/34.svg" alt="">
-                            <div class="glow absolute w-full h-2/3"></div>
-                        </div>
-                        <div class="selected h-1/3 w-full absolute z-0"></div>
-                    </div>
-                </div> -->
 
-                <div class="showroom-floor absolute"></div>
+                    <div class="showroom-floor absolute"></div>
 
-                <div class="btn-scroller-div z-50 px-3 border-x-4 border-x-teal-200 hover:border-x-teal-100 rounded-full">
+
+                <div class="btn-scroller-div z-50 px-3 border-4 border-x-teal-200 border-y-teal-200/0 hover:border-x-teal-100 rounded-full">
                     <div id="btns-scroller" class="bg-teal-950/90 px-10 py-2 rounded-full border-4 border-teal-200 text-teal-200 hover:border-teal-100">
                         <button id="btn-back" class="font-brand-title text-5xl w-fit mr-3 hover:text-teal-100">&lt;</button>
                         <button id="btn-select" class="font-brand-title text-5xl w-fit mx-10 hover:text-teal-100">SELECT</button>
@@ -101,10 +91,23 @@
         </main>
 
         <footer class="flex flex-col items-center h-3/12 brand-bg border-t-slate-500 border-t-2 z-10">
-            <a id="GH-link" href="https://github.com/Rod-Freedom/P1-Pokeholic" class="h-1/3 flex flex-row justify-center items-center text-2xl w-fit text-slate-300 hover:text-slate-50">
+            <a id="GH-link" href="https://github.com/Rod-Freedom/P1-Pokeholic" target="_blank" class="h-1/3 flex flex-row justify-center items-center text-2xl w-fit text-slate-300 hover:text-slate-50">
                 <i class="fa-brands fa-github"></i>
                 <h3 class="ml-3 font-content font-light underline-offset-4 link-text"><span class="font-bold">PokEhólic</span> GitHub</h3>
             </a>
         </footer>
     </body>
 </html>
+
+<!-- 
+<div id="pokemon" data-position="front" class="flex flex-col absolute h-4/5 z-50 pokemon">
+    <img id="poke-img" class="h-full z-20" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/34.svg" alt="">
+    <div id="poke-fx" class="flex absolute h-full opacity-0">
+        <div class="flex glow-fx h-full w-full relative z-30">
+            <img class="poke-glow h-full z-20" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/34.svg" alt="">
+            <div class="glow absolute w-full h-2/3"></div>
+        </div>
+        <div class="selected h-1/3 w-full absolute z-0"></div>
+    </div>
+</div>
+-->

@@ -173,6 +173,7 @@ footer { height: calc(100vh * (3 / 12)); }
     border: solid 10px rgb(0, 0, 0);
     border-radius: 200px;
     padding: 5%;
+    line-height: 1;
 }
 
 .font-name {
@@ -217,7 +218,11 @@ footer { height: calc(100vh * (3 / 12)); }
    border-radius: 100px;
 }
 
-.hp { width: 81%; } .atk { width: 100%; } .def { width: 77%; } .sp-atk { width: 85%; } .sp-def { width: 75%; } .speed { width: 85%; }
+.level {
+    transition: 200ms;
+}
+
+/* .hp { width: 81%; } .atk { width: 100%; } .def { width: 77%; } .sp-atk { width: 85%; } .sp-def { width: 75%; } .speed { width: 85%; } */
 
 
 /* ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -335,14 +340,14 @@ footer { height: calc(100vh * (3 / 12)); }
 
 .showroom-floor {
     z-index: -10;
-    height: 35%;
-    width: 80vw;
     bottom: 0;
+    width: 80vw;
+    height: 35%;
     background: radial-gradient(
         rgb(8, 0, 28) 50%, 
-        rgba(255, 255, 0, .5) 55%, 
-        rgba(255, 255, 255, 0.7) 58%, 
-        rgba(255, 255, 0, .5) 60%,
+        rgba(255, 255, 0, .4) 58%, 
+        rgba(255, 255, 255, 0.7) 60%, 
+        rgba(255, 255, 0, .5) 62%,
         rgba(255, 255, 0, 0) 70%
         );
 }
@@ -384,8 +389,8 @@ footer { height: calc(100vh * (3 / 12)); }
 .glow {
     background: radial-gradient(
         ellipse,
-        rgba(158, 245, 251, 0.5) 20%,
-        rgba(0, 238, 255, 0.5) 50%,
+        rgba(158, 245, 251, 0.5) 10%,
+        rgba(0, 238, 255, 0.5) 30%,
         rgba(0, 0, 0, 0) 70%
     );
     bottom: -7%;

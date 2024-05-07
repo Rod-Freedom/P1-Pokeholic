@@ -218,26 +218,26 @@
 
     /* The following sets are for the left and right card color scheme. */
     /* This for the right-card/second-poke-type colors */
-    --light-poketype-color: rgb(192, 164, 137);
-    --dark-poketype-color: rgb(75, 52, 30);
-    --light-poketype-color-editable: 192, 164, 137;
-    --dark-poketype-color-editable: 75, 52, 30;
-    --poketype-color-1: rgb(113, 78, 44);
-    --poketype-color-2: rgb(150, 104, 59);
-    --poketype-color-3: rgb(171, 134, 98);
-    --poketype-color-4: rgb(120, 84, 48);
-    --poketype-color-5: rgb(90, 63, 36);
+    --light-poketype-color: var(--light-poketype-color-normal);
+    --dark-poketype-color: var(--dark-poketype-color-normal);
+    --light-poketype-color-editable: var(--light-poketype-color-editable-normal);
+    --dark-poketype-color-editable: var(--dark-poketype-color-editable-normal);
+    --poketype-color-1: var(--poketype-color-1-normal);
+    --poketype-color-2: var(--poketype-color-2-normal);
+    --poketype-color-3: var(--poketype-color-3-normal);
+    --poketype-color-4: var(--poketype-color-4-normal);
+    --poketype-color-5: var(--poketype-color-5-normal);
     
     /* This for the right-card/second-poke-type colors */
-    --light-poketype-color-2: rgb(180, 153, 168);
-    --dark-poketype-color-2: rgb(56, 36, 47);
-    --light-poketype-color-editable-2: 180, 153, 168;
-    --dark-poketype-color-editable-2: 56, 36, 47;
-    --poketype-color-1-2: rgb(98, 64, 83);
-    --poketype-color-2-2: rgb(130, 85, 110);
-    --poketype-color-3-2: rgb(155, 119, 139);
-    --poketype-color-4-2: rgb(104, 68, 88);
-    --poketype-color-5-2: rgb(65, 43, 55);
+    --light-poketype-color-2: var(--light-poketype-color-normal);
+    --dark-poketype-color-2: var(--dark-poketype-color-normal);
+    --light-poketype-color-editable-2: var(--light-poketype-color-editable-normal);
+    --dark-poketype-color-editable-2: var(--dark-poketype-color-editable-normal);
+    --poketype-color-1-2: var(--poketype-color-1-normal);
+    --poketype-color-2-2: var(--poketype-color-2-normal);
+    --poketype-color-3-2: var(--poketype-color-3-normal);
+    --poketype-color-4-2: var(--poketype-color-4-normal);
+    --poketype-color-5-2: var(--poketype-color-5-normal);
 }
 
 * {
@@ -266,6 +266,7 @@ body {
 
 main {
     box-sizing: border-box;
+    max-height: 800px;
 }
 
 .font-brand-title {
