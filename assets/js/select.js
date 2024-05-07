@@ -383,4 +383,26 @@ const readyFunc = () => {
     btnBack.addEventListener('click', changePokemon);
 };
 
+//Local Storage Pokemon//
+
+const SelectButton = document.querySelector('#btn-select');
+SelectButton.addEventListener("click",function(){
+
+    const selectedPokemon = {
+        name: document.getElementById("poke-name").innerText,
+        hp: document.getElementById("hp").dataset.hp,
+        atk: document.getElementById("atk").dataset.atk,
+        def: document.getElementById("def").dataset.def,
+        spAtk: document.getElementById("sp-atk").dataset.spAtk,
+        spDef: document.getElementById("sp-def").dataset.spDef,
+        speed: document.getElementById("speed").dataset.speed
+    };
+
+    localStorage.setItem("selectedPokemon",JSON.stringify(selectedPokemon));
+
+    console.log("Información almacenada:", selectedPokemon);
+})
+
+
+
 window.onload = readyFunc();
