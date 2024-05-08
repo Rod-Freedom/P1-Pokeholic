@@ -384,28 +384,43 @@ const readyFunc = () => {
 };
 
 //Local Storage Pokemon//
-
-
-btnSelect.addEventListener("click",function(){
-
+function selectPokemon() {
     const mainPosition = document.querySelector('[data-position = "0"]');
-
+  
     const selectedPokemon = {
-        name: mainPosition.dataset.name,
-        hp: mainPosition.dataset.hp,
-        atk: mainPosition.dataset.atk,
-        def: mainPosition.dataset.def,
-        spAtk: mainPosition.dataset.spAtk,
-        spDef: mainPosition.dataset.spDef,
-        speed: mainPosition.dataset.speed
+      name: mainPosition.dataset.name,
+      hp: mainPosition.dataset.hp,
+      atk: mainPosition.dataset.atk,
+      def: mainPosition.dataset.def,
+      spAtk: mainPosition.dataset.spAtk,
+      spDef: mainPosition.dataset.spDef,
+      speed: mainPosition.dataset.speed
     };
-
-    localStorage.setItem("selectedPokemon",JSON.stringify(selectedPokemon));
-
+  
+    localStorage.setItem("selectedPokemon", JSON.stringify(selectedPokemon));
+  
     console.log("Información almacenada:", selectedPokemon);
+  }
 
-    window.location.href = "drink.html";
-})
+  //calling Select Pokemon Function once we click the btnSelect
+  btnSelect.addEventListener("click", selectPokemon);
 
+
+// Fetch Drinks API
+function getDrinkData(){
+    //Two Ingredients
+    const apiDrink= 'https://www.thecocktaildb.com/api/json/v2/9973533/lookup.php?iid=603';
+    fetch(apiDrink)
+    .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        console.log(data);
+      });
+
+}
+getDrinkData ();
 
 window.onload = readyFunc();
+
+
