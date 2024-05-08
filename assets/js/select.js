@@ -7,15 +7,39 @@ const btnBack = document.querySelector('#btn-back');
 const btnSelect = document.querySelector('#btn-select');
 let pokeList = [];
 let pokeArrayForDisplay = [];
+const pokeTypeDrinkRel = {
+    grass: 'gin',
+    fire: 'tequila',
+    water: 'tonic_water',
+    ground: 'kahlua',
+    poison: 'jagermeister',
+    fairy: 'absinthe',
+    normal: 'rum',
+    fighting: 'scotch',
+    bug: 'anis',
+    rock: 'beer',
+    psychic: 'angostura_bitters',
+    shadow: 'brandy',
+    steel: 'dry_Vermouth',
+    ghost: 'amaretto',
+    electric: 'passion_fruit_juice',
+    bug: 'mint',
+    dark: 'red_wine',
+    dragon: 'cachaca',
+    ice: 'vodka',
+};
 
-// The following func sets a responsive size for the letters and rotates each of them individually. It also creates a hover animation.
+console.log(pokeTypeDrinkRel);
+
+// The following function sets a responsive size for the letters and rotates each of them individually. It also creates a hover animation.
 const setTitle = () => {
+    // A function that animates the popping of the letters from 0 font-size to something depending on the screen size.
     const bornletters = (letter, i) => {
-        let time = 200*i
+        let time = 200*i; // This time is set based on the transitions of the letters' animation.
         setTimeout(() => {
             if (window.innerWidth > 768) letter.style.fontSize = `15vh`
             if (window.innerWidth < 768) letter.style.fontSize = `10vw`
-        }, time)
+        }, time); // Each letter in the loop will wait for the past letters to finish the animation transition.
     };
 
     const animateLetters = (letter) =>{
