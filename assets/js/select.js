@@ -1,5 +1,4 @@
 const rootEl = document.querySelector(':root'); // A constant for the root element to change te document CSS variables.
-const titleLetters = document.querySelectorAll('.letter'); // This selector targets the main title letters.
 const showroom = document.querySelector('#showroom');
 const pokeNameCard = document.querySelector('#poke-name');
 const btnNext = document.querySelector('#btn-next');
@@ -7,34 +6,26 @@ const btnBack = document.querySelector('#btn-back');
 const btnSelect = document.querySelector('#btn-select');
 let pokeList = [];
 let pokeArrayForDisplay = [];
-
-// The following func sets a responsive size for the letters and rotates each of them individually. It also creates a hover animation.
-const setTitle = () => {
-    const bornletters = (letter, i) => {
-        let time = 200*i
-        setTimeout(() => {
-            if (window.innerWidth > 768) letter.style.fontSize = `15vh`
-            if (window.innerWidth < 768) letter.style.fontSize = `10vw`
-        }, time)
-    };
-
-    const animateLetters = (letter) =>{
-        letter.style.transform = `rotate(${letter.dataset.rotation}rad)`;
-        letter.addEventListener('mouseenter', () => letter.style.transform = `scale(1.2)`);
-        letter.addEventListener('mouseleave', () => letter.style.transform = `rotate(${letter.dataset.rotation}rad)`);
-    };
-
-    titleLetters.forEach(animateLetters);
-    titleLetters.forEach(bornletters);
-};
-
-const changeTitleSize = () => {
-    const resizeLetters = (letter) => {
-        if (window.innerWidth > 768) letter.style.fontSize = `15vh`
-        if (window.innerWidth < 768) letter.style.fontSize = `18vw`
-    }
-    
-    titleLetters.forEach(resizeLetters);
+const pokeTypeDrinkRel = {
+    grass: 'gin',
+    fire: 'tequila',
+    water: 'tonic_water',
+    ground: 'kahlua',
+    poison: 'jagermeister',
+    fairy: 'absinthe',
+    normal: 'rum',
+    fighting: 'scotch',
+    bug: 'anis',
+    rock: 'beer',
+    psychic: 'angostura_bitters',
+    shadow: 'brandy',
+    steel: 'dry_Vermouth',
+    ghost: 'amaretto',
+    electric: 'passion_fruit_juice',
+    bug: 'mint',
+    dark: 'red_wine',
+    dragon: 'cachaca',
+    ice: 'vodka',
 };
 
 const changePokemon = (e) => {
@@ -383,26 +374,33 @@ const readyFunc = () => {
     btnBack.addEventListener('click', changePokemon);
 };
 
+
 //Local Storage Pokemon and Drink when User Selects//
 
 
 btnSelect.addEventListener("click",function(){
 
+//Local Storage Pokemon//
+function selectPokemon()
     const mainPosition = document.querySelector('[data-position = "0"]');
-
+  
     const selectedPokemon = {
-        name: mainPosition.dataset.name,
-        hp: mainPosition.dataset.hp,
-        atk: mainPosition.dataset.atk,
-        def: mainPosition.dataset.def,
-        spAtk: mainPosition.dataset.spAtk,
-        spDef: mainPosition.dataset.spDef,
-        speed: mainPosition.dataset.speed
+      name: mainPosition.dataset.name,
+      hp: mainPosition.dataset.hp,
+      atk: mainPosition.dataset.atk,
+      def: mainPosition.dataset.def,
+      spAtk: mainPosition.dataset.spAtk,
+      spDef: mainPosition.dataset.spDef,
+      speed: mainPosition.dataset.speed
     };
-
-    localStorage.setItem("selectedPokemon",JSON.stringify(selectedPokemon));
-
+  
+    localStorage.setItem("selectedPokemon", JSON.stringify(selectedPokemon));
+  
     console.log("Información almacenada:", selectedPokemon);
+  }
+
+  //calling Select Pokemon Function once we click the btnSelect
+  btnSelect.addEventListener("click", selectPokemon);
 
 
     const drinkAPIURL = 'https://www.thecocktaildb.com/api/json/v2/9973533/lookup.php?i=11009';
@@ -426,7 +424,23 @@ btnSelect.addEventListener("click",function(){
         console.log("Error al obtener informacion:", error.message);
     })
 })
+// Fetch Drinks API
+function getDrinkData(){
+    //Two Ingredients
+    const apiDrink= 'https://www.thecocktaildb.com/api/json/v2/9973533/lookup.php?iid=603';
+    fetch(apiDrink)
+    .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        console.log(data);
+      });
 
+
+}
+getDrinkData ();
 
 
 window.onload = readyFunc();
+
+
