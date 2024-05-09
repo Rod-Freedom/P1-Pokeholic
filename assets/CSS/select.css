@@ -240,6 +240,15 @@
 /* ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 /* The folowing code is for the showroom section. */
 
+#div-options {
+    display: none;
+    max-height: 145px;
+}
+
+#btns-number:hover #div-options {
+    display: flex;
+}
+
 .pokemon {
     transition: 1s;
 }
