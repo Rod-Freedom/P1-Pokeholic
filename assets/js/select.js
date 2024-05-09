@@ -374,8 +374,14 @@ const readyFunc = () => {
     btnBack.addEventListener('click', changePokemon);
 };
 
+
+//Local Storage Pokemon and Drink when User Selects//
+
+
+btnSelect.addEventListener("click",function(){
+
 //Local Storage Pokemon//
-function selectPokemon() {
+function selectPokemon()
     const mainPosition = document.querySelector('[data-position = "0"]');
   
     const selectedPokemon = {
@@ -397,6 +403,27 @@ function selectPokemon() {
   btnSelect.addEventListener("click", selectPokemon);
 
 
+    const drinkAPIURL = 'https://www.thecocktaildb.com/api/json/v2/9973533/lookup.php?i=11009';
+
+    fetch(drinkAPIURL)
+    .then(function(response){
+        if (response.ok) {
+            return response.json();
+        } else {
+            console.log("Error al obtener información", response.statusText);
+        }
+    })
+
+    .then(function(data){
+        if (data) {
+            localStorage.setItem("SelectedDrink", JSON.stringify(data));
+            console.log("Información del drink seleccionado:", data);
+        }
+    })
+    .catch(function(error){
+        console.log("Error al obtener informacion:", error.message);
+    })
+})
 // Fetch Drinks API
 function getDrinkData(){
     //Two Ingredients
@@ -409,8 +436,10 @@ function getDrinkData(){
         console.log(data);
       });
 
+
 }
 getDrinkData ();
+
 
 window.onload = readyFunc();
 
