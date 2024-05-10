@@ -374,3 +374,38 @@ main {
 #GH-link:hover .link-text {
     text-decoration: underline;
 }
+
+.poke-ball {
+    border: solid 8px rgba(248, 250, 252);
+    background: radial-gradient(
+        rgba(0, 0, 0, 1) 0%,
+        rgba(0, 0, 0, 1) 20%,
+        rgba(0, 0, 0, 0) 20%
+    ), linear-gradient(
+        rgba(248, 250, 252, .3) 0%,
+        rgba(248, 250, 252, .3) 45%,
+        rgba(248, 250, 252, 1) 43%,
+        rgba(248, 250, 252, 1) 57%,
+        rgba(248, 250, 252, 0) 57%
+    ), radial-gradient(
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0) 20%,
+        rgba(248, 250, 252, 1) 20%,
+        rgba(248, 250, 252, 1) 35%,
+        rgba(248, 250, 252, 0) 35%
+    );
+}
+
+.fa-glass-empty {
+    font-size: 10rem;
+}
+
+@keyframes pulse {
+    50% {
+        opacity: .5;
+    }
+}
+
+#loading_filter {
+    animation: pulse 5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}

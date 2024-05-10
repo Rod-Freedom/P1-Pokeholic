@@ -42,7 +42,13 @@
         </header>
 
         <main class="flex z-10 relative w-full py-16 px-8 justify-center items-center">
-            <div id="loading_filter" class="absolute w-screen h-screen bg-black/70 z-50 animate-pulse hidden"></div>
+            <div id="loading_filter-div" class="absolute hidden justify-center items-center w-screen h-screen z-50">
+                <div id="loading_filter" class="bg-black/70 h-full w-full"></div>
+                <i class="fa-light fa-glass-empty absolute text-slate-50 opacity-90 animate-pulse"></i>
+                <div class="poke-ball w-20 h-20 rounded-full absolute animate-pulse"></div>
+                <div class="poke-ball w-20 h-20 rounded-full absolute animate-ping"></div>
+            </div>
+
             <section id="left-screen" class="bg-poketype flex w-1/4 flex-col items-center justify-around h-full relative rounded-3xl py-4 z-20 animate-pulse">
                 <div class="stats flex flex-col w-11/12 items-center justify-center px-4 py-3 rounded-3xl border-4 border-black">
                     <div id="poke-preview-div" class="relative flex justify-center items-center mb-7 mt-4">
