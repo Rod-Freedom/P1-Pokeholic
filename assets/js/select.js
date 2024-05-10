@@ -8,6 +8,7 @@ const btnsScroller = document.querySelector('#btns-scroller');
 const selectorPokeNums = document.querySelector('#poke-num-selector');
 const btnsNumber = document.querySelector('#btns-number');
 const showroomFloor = document.querySelector('.showroom-floor');
+const loadingFilter = document.querySelector('#loading_filter-div');
 let pokeList = [];
 let dataArrayForDisplay = [];
 const pokeTypeDrinkRel = {
@@ -36,14 +37,20 @@ const changePokeGroup = (e) => {
     const event = e.target;
     const index = event.dataset.index;
     const limit = event.dataset.limit;
-    
-    dataArrayForDisplay = [];
+    const firstPokeInArray = document.querySelector('[data-array-position="0"]');
+    const lastIndex = firstPokeInArray.dataset.id - 1;
+    const lastSelectedOption = document.querySelector(`[data-index="${lastIndex}"]`);
+
+    dataArrayForDisplay = [];    
+    lastSelectedOption.classList.remove('hidden');
     event.classList.add('hidden');
+    loadingFilter.classList.remove('hidden');
+    loadingFilter.classList.add('flex');
     getTenPokemons(index, limit);
     selectorPokeNums.innerText = event.textContent; 
 }
 
-const renderOptions = () => {
+const renderPokeNumOpt = () => {
     const divOptions = document.querySelector('#div-options');
     let start = 1;
     let end = 10;
@@ -52,6 +59,8 @@ const renderOptions = () => {
 
     while (end < 1021)  {
         const option = document.createElement('h3');
+        
+        if (start === 1) option.classList.add('hidden');
         option.classList.add('text-center', 'rounded-full', 'w-full', 'text-3xl', 'my-1', 'bg-slate-100/30', 'hover:bg-slate-300/50');
         option.innerText = `${start} - ${end}`;
         option.dataset.index = start - 1;
@@ -454,6 +463,8 @@ const fillSideCards = () => {
     btnsScroller.parentElement.classList.remove('animate-pulse');
     btnsNumber.classList.remove('animate-pulse');
     showroomFloor.classList.remove('animate-pulse');
+    loadingFilter.classList.remove('flex');
+    loadingFilter.classList.add('hidden');
     fillPokeCard();
     fillDrinkCard();
 }
@@ -568,82 +579,23 @@ const getPokeListFunc = () => {
         .catch(() => console.log('An error has been found'))
 };
 
+const selectPokeDrink = () => {
+    const selectedPokeDrink = document.querySelector('[data-position="0"]');
+    const arrayPosition = selectedPokeDrink.dataset.arrayPosition;
+    const pokeDrinkObj = dataArrayForDisplay[arrayPosition];
+    
+    localStorage.setItem('selectedPokeDrink', JSON.stringify(pokeDrinkObj));
+    window.location.href = 'drink.html';
+};
+
 const readyFunc = () => {
     setTitle();
     getPokeListFunc();
-    renderOptions();
+    renderPokeNumOpt();
     window.addEventListener('resize', changeTitleSize);
     btnNext.addEventListener('click', changePokemon);
     btnBack.addEventListener('click', changePokemon);
+    btnSelect.addEventListener('click', selectPokeDrink);
 };
 
-
-//Local Storage Pokemon and Drink when User Selects//
-
-
-btnSelect.addEventListener("click",function(){
-
-//Local Storage Pokemon//
-function selectPokemon(){
-    const mainPosition = document.querySelector('[data-position = "0"]');
-  
-    const selectedPokemon = {
-      name: mainPosition.dataset.name,
-      hp: mainPosition.dataset.hp,
-      atk: mainPosition.dataset.atk,
-      def: mainPosition.dataset.def,
-      spAtk: mainPosition.dataset.spAtk,
-      spDef: mainPosition.dataset.spDef,
-      speed: mainPosition.dataset.speed
-    };
-  
-    localStorage.setItem("selectedPokemon", JSON.stringify(selectedPokemon));
-  
-    console.log("Información almacenada:", selectedPokemon);
-  }
-
-  //calling Select Pokemon Function once we click the btnSelect
-  btnSelect.addEventListener("click", selectPokemon);
-
-
-    const drinkAPIURL = 'https://www.thecocktaildb.com/api/json/v2/9973533/lookup.php?i=11009';
-
-    fetch(drinkAPIURL)
-    .then(function(response){
-        if (response.ok) {
-            return response.json();
-        } else {
-            console.log("Error al obtener información", response.statusText);
-        }
-    })
-
-    .then(function(data){
-        if (data) {
-            localStorage.setItem("SelectedDrink", JSON.stringify(data));
-            console.log("Información del drink seleccionado:", data);
-        }
-    })
-    .catch(function(error){
-        console.log("Error al obtener informacion:", error.message);
-    })
-})
-// Fetch Drinks API
-function getDrinkData(){
-    //Two Ingredients
-    const apiDrink= 'https://www.thecocktaildb.com/api/json/v2/9973533/lookup.php?iid=603';
-    fetch(apiDrink)
-    .then(function (response) {
-        return response.json();
-      })
-      .then(function (data) {
-        console.log(data);
-      });
-
-
-}
-// getDrinkData ();
-
-
 window.onload = readyFunc();
-
-
