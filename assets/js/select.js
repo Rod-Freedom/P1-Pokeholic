@@ -584,7 +584,7 @@ const readyFunc = () => {
 btnSelect.addEventListener("click",function(){
 
 //Local Storage Pokemon//
-function selectPokemon()
+function selectPokemon(){
     const mainPosition = document.querySelector('[data-position = "0"]');
   
     const selectedPokemon = {
