@@ -590,7 +590,7 @@ const selectPokeDrink = () => {
 
 const readyFunc = () => {
     setTitle();
-    // getPokeListFunc();
+    getPokeListFunc();
     renderPokeNumOpt();
     window.addEventListener('resize', changeTitleSize);
     btnNext.addEventListener('click', changePokemon);
