@@ -1,0 +1,23 @@
+.hover-enhance:hover {
+    border-color: black; 
+    transform: scale(1.05); 
+}
+
+
+.credits-section {
+    display: flex;      
+    width: 100%;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;  
+    height: 100vh;       
+    border: 2px solid rgb(0, 255, 42); 
+
+}
+
+.content-container {
+    width: 50%;         
+    max-width: 600px;    
+}
+
+

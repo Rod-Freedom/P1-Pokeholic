@@ -1,4 +1,3 @@
-
 /* */
 //Variable to save the info from the local storage
 let selectedPokeDrink = {};
@@ -51,7 +50,6 @@ function renderInstructions(){
     const pElement = document.createElement('p');
     pElement.textContent = drinkInstructions;
     drinksDiv.appendChild(pElement);
-
 }
 
 //Function to call the functions once we load the page 
@@ -63,4 +61,3 @@ const readyDrinkFunc = () => {
 }
 
 window.onload = readyDrinkFunc();
-
