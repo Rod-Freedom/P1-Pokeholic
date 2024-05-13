@@ -1,20 +1,29 @@
-/* */
-//Variable to save the info from the local storage
-let selectedPokeDrink = {};
-let savedPokeDrinks = [];
+const btnSave = document.querySelector('#save-btn');
+let selectedPokeDrink = {}; // Variable to save the info from the local storage
+
+const savePokeDrinkToLocal = () => {
+    if (localStorage.getItem('savedPokeDrinks')) {
+        localSavesArray = JSON.parse(localStorage.getItem('savedPokeDrinks'));
+        localSavesArray.push(selectedPokeDrink);
+        localStorage.setItem('savedPokeDrinks', JSON.stringify(localSavesArray));
+        renderSaves();
+    } else {
+        localSavesArray.push(selectedPokeDrink);
+        localStorage.setItem('savedPokeDrinks', JSON.stringify(localSavesArray));
+        renderSaves();
+    }
+};
 
 //Function to push info from local storage into selectedPokeDrink variable
 function getSelectedPokeDrink(){
-    
     const selectedLocalData = JSON.parse(localStorage.getItem("selectedPokeDrink"));
     selectedPokeDrink = selectedLocalData;
 };
+
 //Save info in local storage
 function drinkLocalStorage(){
-
     savedPokeDrinks.push(selectedPokeDrink);
     localStorage.setItem("savedPokeDrinks", JSON.stringify(savedPokeDrinks));
-    
 }
 
 //Create function to render the drink's name
@@ -25,7 +34,6 @@ function renderName(){
     const drinkh1 = document.createElement('h1');
     drinkh1.textContent = drinkName;
     drinkTitle.appendChild(drinkh1);
-    
 }
 
 //function to loop through ingredients and measures and adding them inside the ingredients-list 'ul'
@@ -70,7 +78,6 @@ function loadDrinkImage() {
 //adding the text we extracted from getInstructions function and
 //extract drink's instructions from the local storage
 function renderInstructions(){
-
     const drink = selectedPokeDrink.drink;
     const drinkInstructions = drink.strInstructions;
     const drinksDiv = document.getElementById('drinks-instructions');
@@ -81,12 +88,12 @@ function renderInstructions(){
 
 //Function to call the functions once we load the page 
 const readyDrinkFunc = () => {
-    
     getSelectedPokeDrink();
     renderName();
     renderInstructions();
     renderIngredients();
     loadDrinkImage();
+    btnSave.addEventListener('click', savePokeDrinkToLocal);
 }
 
 window.onload = readyDrinkFunc();

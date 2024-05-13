@@ -611,22 +611,13 @@ const getTenPokemons = (index, limit) => {
     fetch(pokeList[i].url)
         .then(string => string.json())
         .then(pokeObj => {
-            dataObj.pokemon = pokeObj;
-            delete pokeObj.abilities;
-            delete pokeObj.base_experience;
-            delete pokeObj.cries;
-            delete pokeObj.forms;
-            delete pokeObj.game_indices;
-            delete pokeObj.height;
-            delete pokeObj.held_items;
-            delete pokeObj.is_default;
-            delete pokeObj.location_area_encounters;
-            delete pokeObj.moves;
-            delete pokeObj.order;
-            delete pokeObj.past_abilities;
-            delete pokeObj.past_types;
-            delete pokeObj.species;
-            delete pokeObj.weight;
+            const pokemon = dataObj.pokemon;
+            pokemon.id = pokeObj.id;
+            pokemon.name = pokeObj.name;
+            pokemon.sprites = {};
+            pokemon.sprites.other = pokeObj.sprites.other;
+            pokemon.stats = pokeObj.stats;
+            pokemon.types = pokeObj.types;
             dataArrayForDisplay.push(dataObj);
         })
         .then(() => {
@@ -657,7 +648,6 @@ const selectPokeDrink = () => {
 };
 
 const readySelectFunc = () => {
-    setTitle();
     getPokeListFunc();
     renderPokeNumOpt();
     window.addEventListener('resize', mediaQueriesFunc);
