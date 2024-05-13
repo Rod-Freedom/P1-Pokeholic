@@ -1,7 +1,7 @@
-
 /* */
 //Variable to save the info from the local storage
 let selectedPokeDrink = {};
+let savedPokeDrinks = [];
 
 //Function to push info from local storage into selectedPokeDrink variable
 function getSelectedPokeDrink(){
@@ -9,6 +9,24 @@ function getSelectedPokeDrink(){
     const selectedLocalData = JSON.parse(localStorage.getItem("selectedPokeDrink"));
     selectedPokeDrink = selectedLocalData;
 };
+//Save info in local storage
+function drinkLocalStorage(){
+
+    savedPokeDrinks.push(selectedPokeDrink);
+    localStorage.setItem("savedPokeDrinks", JSON.stringify(savedPokeDrinks));
+    
+}
+
+//Create function to render the drink's name
+function renderName(){
+    const drinkTitle = document.querySelector("#cocktail-name")
+    const drink = selectedPokeDrink.drink;
+    const drinkName = drink.strDrink;
+    const drinkh1 = document.createElement('h1');
+    drinkh1.textContent = drinkName;
+    drinkTitle.appendChild(drinkh1);
+    
+}
 
 //function to loop through ingredients and measures and adding them inside the ingredients-list 'ul'
 function renderIngredients(){
@@ -37,9 +55,6 @@ function loadDrinkImage() {
     drinkImageDiv.style.backgroundImage = `url('${drinkImage}')`;
 }
 
-
-//FUNCTIONS TO START ADDING STUFF INTO THE DRINKS PAGE
-
 //Function to create a 'p' element inside the drinks-instructions div,
 //adding the text we extracted from getInstructions function and
 //extract drink's instructions from the local storage
@@ -51,16 +66,16 @@ function renderInstructions(){
     const pElement = document.createElement('p');
     pElement.textContent = drinkInstructions;
     drinksDiv.appendChild(pElement);
-
 }
 
 //Function to call the functions once we load the page 
 const readyDrinkFunc = () => {
+    
     getSelectedPokeDrink();
-    renderInstructions()
+    renderName();
+    renderInstructions();
     renderIngredients();
     loadDrinkImage();
 }
 
 window.onload = readyDrinkFunc();
-
