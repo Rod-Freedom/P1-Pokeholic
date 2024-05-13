@@ -29,22 +29,33 @@ function renderName(){
 }
 
 //function to loop through ingredients and measures and adding them inside the ingredients-list 'ul'
-function renderIngredients(){
-
+function renderIngredients() {
     const ingredientsList = document.querySelector("#ingredients-list");
-    const drink = selectedPokeDrink.drink
+    const drink = selectedPokeDrink.drink;
 
     let i = 1;
 
-        while (drink[`strIngredient${i}`] !== null || drink[`strMeasure${i}`] !== null && i < 16) {
-            let ingredient = drink[`strIngredient${i}`] || '';
-            let measure = drink[`strMeasure${i}`] ? `${drink[`strMeasure${i}`]} of` : '';
-            let ingredientItem = document.createElement('li');
-            ingredientItem.textContent = `${measure} ${ingredient}`;
-            ingredientsList.appendChild(ingredientItem);
-            i++;
+    while ((drink[`strIngredient${i}`] !== null || drink[`strMeasure${i}`] !== null) && i < 16) {
+        let ingredient = drink[`strIngredient${i}`] || '';
+        let measure = ! drink[`strMeasure${i}`] ? '' 
+        : drink[`strMeasure${i}`].includes(" of") ? drink[`strMeasure${i}`]
+        : drink[`strMeasure${i}`].includes(" with") ? drink[`strMeasure${i}`]
+        : `${drink[`strMeasure${i}`]} of ` 
+         
+        
+        if (measure && isNaN(parseInt(measure.charAt(0)))) {
+            measure = measure.charAt(0).toUpperCase() + measure.slice(1);
         }
-    };
+
+        let ingredientItem = document.createElement('li');
+        ingredientItem.textContent = `${measure} ${ingredient}`;
+        ingredientsList.appendChild(ingredientItem);
+        i++;
+    
+}
+}
+
+
 
 //function to extraxt the image from the local storage and adding it inside the cocktail-image div
 function loadDrinkImage() {
