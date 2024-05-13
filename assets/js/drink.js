@@ -1,2 +1,2 @@
-const selectedPokemon = JSON.parse(localStorage.getItem("selectedPokemon"));
-console.log("Informacion del Pokemon:", selectedPokemon);
+const selectedPokeDrink = JSON.parse(localStorage.getItem("selectedPokeDrink"));
+console.log("Informacion del Pokemon:", selectedPokeDrink);
