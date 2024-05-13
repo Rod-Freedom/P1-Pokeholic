@@ -64,7 +64,6 @@ function renderIngredients() {
 }
 
 
-
 //function to extraxt the image from the local storage and adding it inside the cocktail-image div
 function loadDrinkImage() {
     const drink = selectedPokeDrink.drink;
@@ -85,6 +84,7 @@ function renderInstructions(){
     pElement.textContent = drinkInstructions;
     drinksDiv.appendChild(pElement);
 }
+
 
 //Function to call the functions once we load the page 
 const readyDrinkFunc = () => {
