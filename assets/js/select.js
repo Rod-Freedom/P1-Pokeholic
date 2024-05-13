@@ -251,7 +251,7 @@ const renderOnePokemon = (dataObj, i) => {
     pokemonDiv.dataset.position = i;
     pokemonDiv.dataset.arrayPosition = i;
     pokemonDiv.dataset.id = pokemon.id;
-    pokemonDiv.dataset.gif = pokemon.sprites.other.showdown.front_default;
+    pokemonDiv.dataset.gif = pokemon.sprites.other.showdown.front_default ? pokemon.sprites.other.showdown.front_default : pokemon.sprites.other['official-artwork'].front_default;
     pokemonDiv.dataset.name = pokemon.name;
     pokemonDiv.dataset.hp = pokemon.stats[0].base_stat;
     pokemonDiv.dataset.atk = pokemon.stats[1].base_stat;
@@ -269,7 +269,7 @@ const renderOnePokemon = (dataObj, i) => {
     }
     
     pokemonImg.classList.add('h-full', 'z-20', 'poke-img');
-    pokemonImg.src = pokemon.sprites.other.dream_world.front_default;
+    pokemonImg.src = pokemon.sprites.other.dream_world.front_default ? pokemon.sprites.other.dream_world.front_default : pokemon.sprites.other['official-artwork'].front_default;
     
     pokeFxDiv.classList.add('flex', 'absolute', 'h-full', 'poke-fx');
     if (i === 0) pokeFxDiv.style.opacity = '100%';
@@ -277,7 +277,7 @@ const renderOnePokemon = (dataObj, i) => {
     
     pokeFxInnerDiv.classList.add('flex', 'glow-fx', 'h-full', 'w-full', 'relative', 'z-30');
 
-    pokeGlowImg.src = pokemon.sprites.other.dream_world.front_default;
+    pokeGlowImg.src = pokemon.sprites.other.dream_world.front_default ? pokemon.sprites.other.dream_world.front_default : pokemon.sprites.other['official-artwork'].front_default;
     pokeGlowImg.classList.add('poke-glow', 'h-full', 'z-20');
 
     glowDiv.classList.add('glow', 'absolute', 'w-full', 'h-2/3');
@@ -550,7 +550,6 @@ const getTenDrinks = () => { return new Promise((res, rej) => {
                         i++
                         if (i < lim) getDrinkObjs(i, lim)
                         else {
-                            console.log(dataArrayForDisplay);
                             res();
                         }
                     })
@@ -568,7 +567,6 @@ const getTenDrinks = () => { return new Promise((res, rej) => {
                 i++
                 if (i < lim) getDrinkObjs(i, lim)
                 else {
-                    console.log(dataArrayForDisplay);
                     res();
                 }
             })
