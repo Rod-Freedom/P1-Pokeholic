@@ -1,8 +1,13 @@
+body {
+    height: calc(100vh * (13 / 12));
+}
+
 main {
     padding-top: 4rem;
     padding-bottom: 4rem;
     padding-left: 2rem;
     padding-right: 2rem;
+    max-height: 800px;
 }
 
 #vs-screen {
@@ -417,6 +422,11 @@ main {
     #left-screen { width: 30%;}
     #right-screen { width: 30%; }
     #showroom-section { width: 40%; }
+
+    .btn-scroller-div {
+        transform: scale(.8);
+        bottom: -2%;
+    }
 }
 
 @media (min-aspect-ratio: 2.2 / 1) {
@@ -452,10 +462,7 @@ main {
         display: none;
     }
 
-    .btn-scroller-div {
-        transform: scale(.8);
-        bottom: -2%;
-    }
+    
 
     .num-option {
         font-size: 1.5rem;
