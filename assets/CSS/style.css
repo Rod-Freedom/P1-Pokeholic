@@ -269,7 +269,6 @@ body {
             rgb(0, 0, 35) 70%,
             rgb(0, 0, 0) 100%,
             transparent);
-    height: calc(100vh * (13 / 12));
     overflow-x: hidden;
 }
 
@@ -364,7 +363,6 @@ footer { height: calc(100vh * (1 / 6)); }
 
 main {
     box-sizing: border-box;
-    max-height: 800px;
 }
 
 .font-brand-title {
