@@ -17,11 +17,37 @@
         <title>Pokeholic | Gotta Drink'em All!</title>
     </head>
 
-    <body class="flex flex-col justify-between relative overflow-x-hidden">
+    <body class="flex flex-col justify-between relative">
         <div class="front-bg-filter z-0"></div>
-        <header class="w-full h-1/6 flex flex-row justify-center items-start relative z-20">
+        
+        <section id="booze-dex-window" class="absolute flex-col self-center rounded-xl">
+            <div id="saved-div-bar" class="w-full h-8 flex justify-end items-center px-5">
+                <i id="btn-close-bd" class="fa-sharp fa-solid fa-xmark flex justify-center items-center rounded-full h-5"></i>
+            </div>
+            <div id="saves-div" class="flex flex-col py-6 px-10 grow">
+                <div id="bd-header" class="flex flex-row justify-start items-center pb-6">
+                    <i class="fa-regular fa-game-console-handheld text-4xl pr-5"></i>
+                    <h1 class="bd-title font-brand-title text-5xl">Booze-Dex</h1>
+                </div>
+                <div class="saves p-5 grow rounded-xl">
+                    <div class="save w-32 m-3">
+                        <div class="flex justify-center items-center save-div-icon h-32 w-32 relative">
+                            <div class="svd-poke-img h-full w-full z-50"></div>
+                            <div class="svd-drink-img h-full w-full z-40 absolute"></div>
+                        </div>
+                        <h1 class="flex flex-col save-name text-center pt-3 font-bold w-full">
+                            <span class="save-poke-name">Charizard</span>
+                            <span class="save-drink-name w-full">Margarita Under the Sun</span>
+                        </h1>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        
+        <header class="w-full flex flex-row justify-center items-start relative z-20">
             <div class="brand-bg absolute h-1/2 w-full top-0 z-0"></div>
-            <div class="font-brand-title color-brand title-brand flex flex-row flex-nowrap justify-start header-div z-10 h-5/6 md:pl-16 pl-2 mr-auto">
+            <div class="font-brand-title color-brand title-brand flex flex-row flex-nowrap justify-start header-div z-10 h-5/6 md:pl-16 pl-6 mr-auto">
                 <h1 class="letter front" data-rotation="-.2">P</h1>
                 <h1 class="letter back" data-rotation="-.1">o</h1>
                 <h1 class="letter middle" data-rotation="-.05">k</h1>
@@ -41,35 +67,35 @@
             </div>
         </header>
 
-        <main class="flex z-10 relative w-full py-16 px-8 jusify-center items-center">
-            <div id="loading_filter-div" class="absolute hidden justify-center items-center w-screen h-screen z-50">
-                <div id="loading_filter" class="bg-black/70 h-full w-full"></div>
+        <main class="flex z-10 relative justify-center items-center w-full">
+            <div id="loading-filter-div" class="absolute hidden justify-center items-center w-screen h-screen z-50">
+                <div id="loading-filter" class="bg-black/70 h-full w-full"></div>
                 <i class="fa-light fa-glass-empty absolute text-slate-50 opacity-90 animate-pulse"></i>
                 <div class="poke-ball w-20 h-20 rounded-full absolute animate-pulse"></div>
                 <div class="poke-ball w-20 h-20 rounded-full absolute animate-ping"></div>
             </div>
 
-            <section id="left-screen" class="bg-poketype flex w-1/4 flex-col items-center justify-around h-full relative rounded-3xl py-4 z-20 animate-pulse">
+            <section id="left-screen" class="bg-poketype flex flex-col items-center justify-around h-full relative rounded-3xl py-4 z-20 animate-pulse">
                 <div class="stats flex flex-col w-11/12 items-center justify-center px-4 py-3 rounded-3xl border-4 border-black">
-                    <div id="poke-preview-div" class="relative flex justify-center items-center mb-7 mt-4">
+                    <div id="poke-preview-div" class="relative flex justify-center items-center mb-4">
                         <img id="poke-gif" class="z-10" src="" alt="">
                         <img id="poke-gif-shadow" class="z-0 absolute" src="" alt="">
                     </div>
 
-                    <div class="meter flex flex-row font-brand-title w-full"><h3 class="px-1 w-3/12">HP    </h3><div class="stat w-7/12 border-2 border-slate-300 m-1 p-1"><div class="level h-full"></div></div><p class="extra w-2/12 text-center"></p></div>
-                    <div class="meter flex flex-row font-brand-title w-full"><h3 class="px-1 w-3/12">ATK   </h3><div class="stat w-7/12 border-2 border-slate-300 m-1 p-1"><div class="level h-full"></div></div><p class="extra w-2/12 text-center"></p></div>
-                    <div class="meter flex flex-row font-brand-title w-full"><h3 class="px-1 w-3/12">DEF   </h3><div class="stat w-7/12 border-2 border-slate-300 m-1 p-1"><div class="level h-full"></div></div><p class="extra w-2/12 text-center"></p></div>
-                    <div class="meter flex flex-row font-brand-title w-full"><h3 class="px-1 w-3/12">SP.ATK</h3><div class="stat w-7/12 border-2 border-slate-300 m-1 p-1"><div class="level h-full"></div></div><p class="extra w-2/12 text-center"></p></div>
-                    <div class="meter flex flex-row font-brand-title w-full"><h3 class="px-1 w-3/12">SP.DEF</h3><div class="stat w-7/12 border-2 border-slate-300 m-1 p-1"><div class="level h-full"></div></div><p class="extra w-2/12 text-center"></p></div>
-                    <div class="meter flex flex-row font-brand-title w-full"><h3 class="px-1 w-3/12">SPEED </h3><div class="stat w-7/12 border-2 border-slate-300 m-1 p-1"><div class="level h-full"></div></div><p class="extra w-2/12 text-center"></p></div>
+                    <div class="meter flex flex-row font-brand-title w-full"><h3 class="px-1 w-3/12">HP    </h3><div class="stat w-7/12 border-2 border-slate-300 m-1"><div class="level h-full"></div></div><p class="extra w-2/12 text-center"></p></div>
+                    <div class="meter flex flex-row font-brand-title w-full"><h3 class="px-1 w-3/12">ATK   </h3><div class="stat w-7/12 border-2 border-slate-300 m-1"><div class="level h-full"></div></div><p class="extra w-2/12 text-center"></p></div>
+                    <div class="meter flex flex-row font-brand-title w-full"><h3 class="px-1 w-3/12">DEF   </h3><div class="stat w-7/12 border-2 border-slate-300 m-1"><div class="level h-full"></div></div><p class="extra w-2/12 text-center"></p></div>
+                    <div class="meter flex flex-row font-brand-title w-full"><h3 class="px-1 w-3/12">SP.ATK</h3><div class="stat w-7/12 border-2 border-slate-300 m-1"><div class="level h-full"></div></div><p class="extra w-2/12 text-center"></p></div>
+                    <div class="meter flex flex-row font-brand-title w-full"><h3 class="px-1 w-3/12">SP.DEF</h3><div class="stat w-7/12 border-2 border-slate-300 m-1"><div class="level h-full"></div></div><p class="extra w-2/12 text-center"></p></div>
+                    <div class="meter flex flex-row font-brand-title w-full"><h3 class="px-1 w-3/12">SPEED </h3><div class="stat w-7/12 border-2 border-slate-300 m-1"><div class="level h-full"></div></div><p class="extra w-2/12 text-center"></p></div>
                 </div>
 
                 <div class="text-white px-4 py-2 div-name div-poke-name text-7xl relative">
-                    <h1 id="poke-name" class="font-name text-center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h1>
+                    <h1 id="poke-name" class="font-name text-center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h1>
                 </div>
             </section>
 
-            <section class="flex flex-col items-center justify-end grow h-full relative">
+            <section id="showroom-section" class="flex flex-col items-center h-full relative">
                 <div id="btns-number" class="flex flex-row items-start bg-teal-950/40 hover:bg-teal-950/90 px-5 py-1 rounded-3xl border-2 border-teal-200/70 text-teal-200/70 hover:border-teal-200 absolute top-0 z-40 animate-pulse">
                     <div class="flex flex-col items-center">
                         <button id="poke-num-selector" class="font-brand-title text-4xl w-fit hover:text-teal-100 pl-16 pr-16"></button>
@@ -87,27 +113,55 @@
                         <button id="btn-next" class="font-brand-title text-5xl w-fit ml-3 hover:text-teal-100">&gt;</button>
                     </div>
                 </div>
+
+                <section id="vs-screen" class="flex flex-col w-full h-full absolute">
+                    <div id="ls-mobile-div" class="h-1/2">
+                        <div id="left-screen-mobile" class="h-full relative flex items-center">
+                            <div class="flex items-center name-mobile-div h-1/2 w-2/3 relative">
+                                <h1 class="font-poke-mobile text-center absolute text-7xl">Pokemon</h1>
+                                <h1 id="poke-name-mobile" class="names-mobile font-p-name-mobile text-center absolute text-7xl"></h1>
+                            </div>
+                            <div class="flex w-1/3 relative justify-center pr-2">
+                                <img id="poke-gif-mobile" class="z-10" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/6.gif" alt="">
+                                <img id="poke-gif-shadow-mobile" class="z-0 absolute" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/6.gif" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div id="rs-mobile-div" class="h-1/2">
+                        <div id="right-screen-mobile" class="h-full relative flex flex-col items-start justify-center">
+                            <div class="flex flex-row items-center drink-mobile-div h-1/2 w-5/6 relative">
+                                <h1 class="font-drink-mobile text-7xl absolute w-full">Drink</h1>
+                                <h1 id="drink-name-mobile" class="names-mobile font-d-name-mobile text-7xl absolute w-full"></h1>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
                 <div id="showroom" class="flex flex-col items-center justify-end w-full h-full relative z-10"></div>
             </section>
 
-            <section id="right-screen" class="bg-poketype-2 flex w-1/4 flex-col items-center justify-around h-full rounded-3xl py-4 z-20 animate-pulse">
+            <section id="right-screen" class="bg-poketype-2 flex flex-col items-center justify-around h-full rounded-3xl py-4 z-20 animate-pulse">
                 <div class="drink-stats flex flex-col w-11/12 items-center justify-center px-4 py-3 rounded-3xl border-4 border-black">
                     <i id="drink-icon" class="text-7xl mb-7 mt-4"></i>
-                    <div class="meter flex flex-row font-brand-title w-full"><h3 class="px-1 w-3/12">DIFF.LV</h3><div class="stat w-7/12 border-2 border-slate-300 m-1 p-1"><div class="level h-full"></div></div><p class="extra w-2/12 text-center"></p></div>
-                    <div class="meter flex flex-row font-brand-title w-full"><h3 class="px-1 w-3/12">INGRED.</h3><div class="stat w-7/12 border-2 border-slate-300 m-1 p-1"><div class="level h-full"></div></div><p class="extra w-2/12 text-center"></p></div>
+                    <div class="meter flex flex-row font-brand-title w-full"><h3 class="px-1 w-3/12">DIFF.LV</h3><div class="stat w-7/12 border-2 border-slate-300 m-1"><div class="level h-full"></div></div><p class="extra w-2/12 text-center"></p></div>
+                    <div class="meter flex flex-row font-brand-title w-full"><h3 class="px-1 w-3/12">INGRED.</h3><div class="stat w-7/12 border-2 border-slate-300 m-1"><div class="level h-full"></div></div><p class="extra w-2/12 text-center"></p></div>
                 </div>
 
                 <div class="text-white px-4 py-2 text-7xl div-name div-drink-name">
-                    <h1 id="drink-name" class="font-drink text-center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h1>
+                    <h1 id="drink-name" class="font-drink text-center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h1>
                 </div>
             </section>
         </main>
 
-        <footer class="flex flex-col items-center h-3/12 brand-bg border-t-slate-500 border-t-2 z-20">
-            <a id="GH-link" href="https://github.com/Rod-Freedom/P1-Pokeholic" target="_blank" class="h-1/3 flex flex-row justify-center items-center text-2xl w-fit text-slate-300 hover:text-slate-50">
+        <footer class="flex flex-col items-center justify-between brand-bg border-t-slate-500 border-t-2 z-20">
+            <a id="GH-link" href="https://github.com/Rod-Freedom/P1-Pokeholic" target="_blank" class="h-1/2 flex flex-row justify-center items-center text-2xl w-fit text-slate-300 hover:text-slate-50">
                 <i class="fa-brands fa-github"></i>
                 <h3 class="ml-3 font-content font-light underline-offset-4 link-text"><span class="font-bold">PokEhólic</span> GitHub</h3>
             </a>
+            <div class="flex flex-row justify-between items-center w-full px-10 h-2/5">
+                <a class="font-content font-bold hover:underline underline-offset-4 text-slate-300 hover:text-slate-50" href="./credits.html">Credits</a>
+                <p class="font-content text-slate-300 text-end">by <span class="text-xl">®</span>PokEmons Anonymous. <span class="text-xl">©</span>2024</p>
+            </div>
         </footer>
     </body>
 </html>
