@@ -8,7 +8,18 @@ const btnsScroller = document.querySelector('#btns-scroller');
 const selectorPokeNums = document.querySelector('#poke-num-selector');
 const btnsNumber = document.querySelector('#btns-number');
 const showroomFloor = document.querySelector('.showroom-floor');
-const loadingFilter = document.querySelector('#loading_filter-div');
+const loadingFilter = document.querySelector('#loading-filter-div');
+const pokeCard = document.querySelector('#left-screen');
+const drinkCard = document.querySelector('#right-screen');
+const drinkName = document.querySelector('#drink-name');
+const pokeName = document.querySelector('#poke-name');
+const pokeGif = document.querySelector('#poke-gif');
+const pokeGifShadow = document.querySelector('#poke-gif-shadow');
+const pokeNameMobile = document.querySelector('#poke-name-mobile');
+const drinkNameMobile = document.querySelector('#drink-name-mobile');
+const pokeGifMobile = document.querySelector('#poke-gif-mobile');
+const pokeGifShadowMobile = document.querySelector('#poke-gif-shadow-mobile');
+
 let pokeList = [];
 let dataArrayForDisplay = [];
 const pokeTypeDrinkRel = {
@@ -33,6 +44,43 @@ const pokeTypeDrinkRel = {
     shadow: 'brandy',
 };
 
+const mediaQueriesFunc = () => {
+    const selectedPoke = document.querySelector('[data-position="0"]');
+    const pokeCardHeight = parseInt(getComputedStyle(pokeCard).getPropertyValue('height'));
+    const pokeCardWidth = parseInt(getComputedStyle(pokeCard).getPropertyValue('width'));
+    const selPokeNameLength = selectedPoke.dataset.name.length;
+    const selDrinkNameLength = dataArrayForDisplay[selectedPoke.dataset.arrayPosition].drink.strDrink.length;
+    
+    pokeGif.style.maxHeight = `${pokeCardHeight * .25}px`;
+    pokeGif.style.minHeight = `${pokeCardHeight * .12}px`;
+    pokeGifShadow.style.maxHeight = `${pokeCardHeight * .25}px`;
+    pokeGifShadow.style.minHeight = `${pokeCardHeight * .12}px`;
+
+    if (window.innerHeight < 952 && window.innerWidth > 1440 && selPokeNameLength < 10) pokeName.style.fontSize = `${pokeCardHeight * .13}px` 
+    if (window.innerHeight < 952 && window.innerWidth < 1440 && selPokeNameLength < 10) pokeName.style.fontSize = `${pokeCardHeight * .12}px`
+    if (window.innerHeight < 952 && window.innerWidth < 1280 && selPokeNameLength < 10) pokeName.style.fontSize = `${pokeCardHeight * .10}px`
+    if (window.innerHeight < 952 && window.innerWidth < 1200 && selPokeNameLength < 10) pokeName.style.fontSize = `${pokeCardHeight * .08}px`
+    if (window.innerHeight > 952 && window.innerWidth < 1580 && selPokeNameLength < 10) pokeName.style.fontSize = `${pokeCardWidth * .17}px`
+    if (window.innerHeight > 952 && window.innerWidth > 1580 && selPokeNameLength < 10) pokeName.style.fontSize = `4.5rem`
+    if (window.innerHeight < 952 && window.innerWidth > 1625 && selPokeNameLength > 9) pokeName.style.fontSize = `${pokeCardHeight * .1}px`
+    if (window.innerHeight < 952 && window.innerWidth < 1625 && selPokeNameLength > 9) pokeName.style.fontSize = `${pokeCardHeight * .1}px`
+    if (window.innerHeight < 952 && window.innerWidth < 1400 && selPokeNameLength > 9) pokeName.style.fontSize = `${pokeCardHeight * .08}px`
+    if (window.innerHeight > 952 && window.innerWidth < 1810 && selPokeNameLength > 9) pokeName.style.fontSize = `${pokeCardWidth * .14}px`
+    if (window.innerHeight > 952 && window.innerWidth > 1625 && selPokeNameLength > 9) pokeName.style.fontSize = `4rem`
+    
+    if (window.innerHeight < 952 && window.innerWidth > 1440 && selDrinkNameLength < 10) drinkName.style.fontSize = `${pokeCardHeight * .13}px` 
+    if (window.innerHeight < 952 && window.innerWidth < 1440 && selDrinkNameLength < 10) drinkName.style.fontSize = `${pokeCardHeight * .12}px`
+    if (window.innerHeight < 952 && window.innerWidth < 1280 && selDrinkNameLength < 10) drinkName.style.fontSize = `${pokeCardHeight * .10}px`
+    if (window.innerHeight < 952 && window.innerWidth < 1200 && selDrinkNameLength < 10) drinkName.style.fontSize = `${pokeCardHeight * .08}px`
+    if (window.innerHeight > 952 && window.innerWidth < 1580 && selDrinkNameLength < 10) drinkName.style.fontSize = `${pokeCardWidth * .17}px`
+    if (window.innerHeight > 952 && window.innerWidth > 1580 && selDrinkNameLength < 10) drinkName.style.fontSize = `4.5rem`
+    if (window.innerHeight < 952 && window.innerWidth > 1625 && selDrinkNameLength > 9) drinkName.style.fontSize = `${pokeCardHeight * .1}px`
+    if (window.innerHeight < 952 && window.innerWidth < 1625 && selDrinkNameLength > 9) drinkName.style.fontSize = `${pokeCardHeight * .1}px`
+    if (window.innerHeight < 952 && window.innerWidth < 1400 && selDrinkNameLength > 9) drinkName.style.fontSize = `${pokeCardHeight * .08}px`
+    if (window.innerHeight > 952 && window.innerWidth < 1810 && selDrinkNameLength > 9) drinkName.style.fontSize = `${pokeCardWidth * .14}px`
+    if (window.innerHeight > 952 && window.innerWidth > 1625 && selDrinkNameLength > 9) drinkName.style.fontSize = `4rem`
+};
+
 const changePokeGroup = (e) => {
     const event = e.target;
     const index = event.dataset.index;
@@ -48,7 +96,7 @@ const changePokeGroup = (e) => {
     loadingFilter.classList.add('flex');
     getTenPokemons(index, limit);
     selectorPokeNums.innerText = event.textContent; 
-}
+};
 
 const renderPokeNumOpt = () => {
     const divOptions = document.querySelector('#div-options');
@@ -61,7 +109,7 @@ const renderPokeNumOpt = () => {
         const option = document.createElement('h3');
         
         if (start === 1) option.classList.add('hidden');
-        option.classList.add('text-center', 'rounded-full', 'w-full', 'text-3xl', 'my-1', 'bg-slate-100/30', 'hover:bg-slate-300/50');
+        option.classList.add('text-center', 'rounded-full', 'w-full', 'my-1', 'bg-slate-100/30', 'hover:bg-slate-300/50', 'num-option');
         option.innerText = `${start} - ${end}`;
         option.dataset.index = start - 1;
         option.dataset.limit = end;
@@ -70,13 +118,12 @@ const renderPokeNumOpt = () => {
         start+=10;
         end+=10;
     }
-}
+};
 
 const changePokemon = (e) => {
     const event = e.target;
     const pokemons = document.querySelectorAll('.pokemon');
-    btnNext.removeEventListener('click', changePokemon);
-    btnBack.removeEventListener('click', changePokemon);
+    btnsScroller.removeEventListener('click', changePokemon);
 
     const changeDataPositionUp = (pokemon) => {
         if (pokemon.dataset.position > 8) pokemon.dataset.position = 0
@@ -95,8 +142,7 @@ const changePokemon = (e) => {
 
     // The transition of the pokemons for changing position is one second, so this timeout is to prevent consecutive clicking from making a furious pokemons spiral.
     setTimeout(() => {
-        btnNext.addEventListener('click', changePokemon);
-        btnBack.addEventListener('click', changePokemon);
+        btnsScroller.addEventListener('click', changePokemon);
     }, 500)
 };
 
@@ -201,7 +247,7 @@ const renderOnePokemon = (dataObj, i) => {
     const glowDiv = document.createElement('div');
     const pokeSelected = document.createElement('div');
 
-    pokemonDiv.classList.add('flex', 'flex-col', 'absolute', 'h-4/5', 'pokemon');
+    pokemonDiv.classList.add('flex', 'flex-col', 'h-4/5', 'pokemon');
     pokemonDiv.dataset.position = i;
     pokemonDiv.dataset.arrayPosition = i;
     pokemonDiv.dataset.id = pokemon.id;
@@ -324,16 +370,15 @@ const renderData = () => {
 
 const fillDrinkCard = () => {
     const selectedPoke = document.querySelector('[data-position="0"]');
-    const drinkCard = document.querySelector('#right-screen');
     drinkCard.classList.remove('animate-pulse');
     const drinkIcon = document.querySelector('#drink-icon');
     const diffLvBar = drinkCard.querySelectorAll('.level')[0];
     const ingredBar = drinkCard.querySelectorAll('.level')[1];
     const diffLvExtra = drinkCard.querySelectorAll('.extra')[0];
     const ingredExtra = drinkCard.querySelectorAll('.extra')[1];
-    const drinkName = document.querySelector('#drink-name');
     const index = selectedPoke.dataset.arrayPosition;
     const drinkObj = dataArrayForDisplay[index].drink;
+    if (drinkObj === '') return
     const glassType = drinkObj.strGlass.toLowerCase();
     const name = drinkObj.strDrink;
     const diffLv = Math.round((dataArrayForDisplay[index].drink.strInstructions.length / 500) * 100);
@@ -362,10 +407,8 @@ const fillDrinkCard = () => {
         }
     };
 
-    if (name.length > 9) drinkName.style.fontSize = '3.75rem'
-    if (name.length > 12) drinkName.style.fontSize = '3rem'
-    else drinkName.style.fontSize = '4.5rem'
     drinkName.innerText = name;
+    drinkNameMobile.innerText = name;
 
     const setBarLevels = () => {
         if (diffLv > 100) {
@@ -396,13 +439,9 @@ const fillDrinkCard = () => {
 
 const fillPokeCard = () => {
     const selectedPoke = document.querySelector('[data-position="0"]');
-    const pokeCard = document.querySelector('#left-screen');
     pokeCard.classList.remove('animate-pulse');
-    const pokeName = document.querySelector('#poke-name');
     const levels = pokeCard.querySelectorAll('.level');
     const extras = pokeCard.querySelectorAll('.extra');
-    const pokeGif = document.querySelector('#poke-gif');
-    const pokeGifShadow = document.querySelector('#poke-gif-shadow');
     const dataTypeOne = selectedPoke.dataset.typeOne;
     const dataTypeTwo = selectedPoke.dataset.typeTwo;
     const gif = selectedPoke.dataset.gif;
@@ -416,11 +455,12 @@ const fillPokeCard = () => {
         selectedPoke.dataset.speed,
     ];
 
-    if (name.length > 9) pokeName.style.fontSize = '3.75rem'
-    else pokeName.style.fontSize = '4.5rem'
     pokeName.innerText = `${name[0].toUpperCase()}${name.slice(1)}`;
+    pokeNameMobile.innerText = `${name[0].toUpperCase()}${name.slice(1)}`;
     pokeGif.src = gif;
     pokeGifShadow.src = gif;
+    pokeGifMobile.src = gif;
+    pokeGifShadowMobile.src = gif;
 
     const setBarLevels = (bar, i) => {
         if (statsArray[i] > 100) {
@@ -467,7 +507,8 @@ const fillSideCards = () => {
     loadingFilter.classList.add('hidden');
     fillPokeCard();
     fillDrinkCard();
-}
+    mediaQueriesFunc();
+};
 
 const getTenDrinks = () => { return new Promise((res, rej) => {
     let index = 0;
@@ -480,6 +521,7 @@ const getTenDrinks = () => { return new Promise((res, rej) => {
         const ingredTwo = dataObj.pokemon.types[1] ? `,${pokeTypeDrinkRel[`${dataObj.pokemon.types[1].type.name}`]}` : '';
         const twoIngredUrl = `https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=${ingredOne}${ingredTwo}`;
         const oneIngredUrl = `https://www.thecocktaildb.com/api/json/v2/9973533/filter.php?i=${ingredOne}`;
+        const randomDrinkUrl = `https://www.thecocktaildb.com/api/json/v2/9973533/random.php`;
         const empellonUrl = 'https://www.thecocktaildb.com/api/json/v2/9973533/lookup.php?i=17246';
         const piscoSourUrl = 'https://www.thecocktaildb.com/api/json/v2/9973533/lookup.php?i=13214';
         const coffeeVodkaUrl = 'https://www.thecocktaildb.com/api/json/v2/9973533/lookup.php?i=12800';
@@ -487,7 +529,8 @@ const getTenDrinks = () => { return new Promise((res, rej) => {
 
         
         const fetchDrink = (drinksObj) => {
-            const randomDrinkId = drinksObj.drinks[Math.floor(Math.random() * drinksObj.drinks.length)].idDrink
+            const randomDrink = drinksObj.drinks[Math.floor(Math.random() * drinksObj.drinks.length)]
+            const randomDrinkId = randomDrink.idDrink
             const drinkIdUrl = pokeName === 'arceus' ? ramosGinFizzUrl
                 : pokeName === 'mewtwo' ? empellonUrl
                 : pokeName === 'dialga' ? coffeeVodkaUrl
@@ -495,27 +538,50 @@ const getTenDrinks = () => { return new Promise((res, rej) => {
                 : `https://www.thecocktaildb.com/api/json/v2/9973533/lookup.php?i=${randomDrinkId}`
             ;
 
-            fetch(drinkIdUrl)
-                .then(string => string.json())
-                .then(drinkObj => {
-                    if (drinkObj.drinks[0].strAlcoholic !== 'Alcoholic') return fetchDrink(drinksObj);
-                    else dataArrayForDisplay[i].drink = drinkObj.drinks[0]
-                })
-                .then(() => {
-                    i++
-                    if (i < lim) getDrinkObjs(i, lim)
-                    else {
-                        console.log(dataArrayForDisplay);
-                        res();
-                    }
-                })
-                .catch((err) => console.log(err))
+            if (randomDrink.strDrink === "Bora Bora" || randomDrink.strDrink === "Ipanema") return fetchDrink(drinksObj);
+            else {
+                fetch(drinkIdUrl)
+                    .then(string => string.json())
+                    .then(drinkObj => {
+                        if (drinkObj.drinks[0].strAlcoholic !== 'Alcoholic') return fetchDrink(drinksObj);
+                        else dataArrayForDisplay[i].drink = drinkObj.drinks[0]
+                    })
+                    .then(() => {
+                        i++
+                        if (i < lim) getDrinkObjs(i, lim)
+                        else {
+                            console.log(dataArrayForDisplay);
+                            res();
+                        }
+                    })
+                    .catch((err) => console.log(err))
+            }
+        };
+
+        const fetchRandom = () => {
+            fetch(randomDrinkUrl)
+            .then(drinkObj => {
+                if (drinkObj.drinks[0].strAlcoholic !== 'Alcoholic') return fetchRandom();
+                else dataArrayForDisplay[i].drink = drinkObj.drinks[0]
+            })
+            .then(() => {
+                i++
+                if (i < lim) getDrinkObjs(i, lim)
+                else {
+                    console.log(dataArrayForDisplay);
+                    res();
+                }
+            })
+                .catch((error) => console.log(error))
         };
 
         const fetchOneIngred = () => {
             fetch(oneIngredUrl)
                 .then(string => string.json())
-                .then(drinksObj => fetchDrink(drinksObj))
+                .then(drinksObj => {
+                    if (drinksObj.drinks === 'None Found') fetchRandom()
+                    else fetchDrink(drinksObj)
+                })
                 .catch((error) => console.log(error))
         };
     
@@ -539,6 +605,8 @@ const getTenPokemons = (index, limit) => {
     let i = index;
     const lim = limit;
     let dataObj = { pokemon: {}, drink: {} }
+    loadingFilter.classList.remove('hidden');
+    loadingFilter.classList.add('flex');
 
     fetch(pokeList[i].url)
         .then(string => string.json())
@@ -588,14 +656,13 @@ const selectPokeDrink = () => {
     window.location.href = 'drink.html';
 };
 
-const readyFunc = () => {
+const readySelectFunc = () => {
     setTitle();
     getPokeListFunc();
     renderPokeNumOpt();
-    window.addEventListener('resize', changeTitleSize);
-    btnNext.addEventListener('click', changePokemon);
-    btnBack.addEventListener('click', changePokemon);
+    window.addEventListener('resize', mediaQueriesFunc);
+    btnsScroller.addEventListener('click', changePokemon);
     btnSelect.addEventListener('click', selectPokeDrink);
 };
 
-window.onload = readyFunc();
+window.onload = readySelectFunc();

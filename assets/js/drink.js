@@ -1,4 +1,3 @@
-
 /* */
 //Variable to save the info from the local storage
 let selectedPokeDrink = {};
