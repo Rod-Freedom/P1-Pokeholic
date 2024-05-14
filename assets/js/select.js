@@ -49,7 +49,7 @@ const mediaQueriesFunc = () => {
     const pokeCardHeight = parseInt(getComputedStyle(pokeCard).getPropertyValue('height'));
     const pokeCardWidth = parseInt(getComputedStyle(pokeCard).getPropertyValue('width'));
     const selPokeNameLength = selectedPoke.dataset.name.length;
-    const selDrinkNameLength = dataArrayForDisplay[selectedPoke.dataset.arrayPosition].drink.strDrink.length;
+    const selDrinkNameLength = dataArrayForDisplay[selectedPoke.dataset.arrayPosition].drink.strDrink ? dataArrayForDisplay[selectedPoke.dataset.arrayPosition].drink.strDrink.length : 10;
     
     pokeGif.style.maxHeight = `${pokeCardHeight * .25}px`;
     pokeGif.style.minHeight = `${pokeCardHeight * .12}px`;
@@ -378,7 +378,7 @@ const fillDrinkCard = () => {
     const ingredExtra = drinkCard.querySelectorAll('.extra')[1];
     const index = selectedPoke.dataset.arrayPosition;
     const drinkObj = dataArrayForDisplay[index].drink;
-    if (drinkObj === '') return
+    if (!drinkObj.strGlass) return
     const glassType = drinkObj.strGlass.toLowerCase();
     const name = drinkObj.strDrink;
     const diffLv = Math.round((dataArrayForDisplay[index].drink.strInstructions.length / 500) * 100);
